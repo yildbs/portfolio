@@ -1,16 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.tsx
+import React from 'react';
+import Header from './components/headers/Header'; // Import the Header component
 
-function App() {
-  // const [count, setCount] = useState(0)
+const App: React.FC = () => {
+    return (
+        <div className="App">
+            <Header /> {/* Use the Header component */}
+            <main className="pt-16">
+                {/* Your main content here */}
+                <p className="p-4">Your page content goes here</p>
+            </main>
+        </div>
+    );
+};
 
-  return (
-    <>
-      Hello
-    </>
-  )
-}
-
-export default App
+export default App;
