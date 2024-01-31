@@ -10,8 +10,8 @@ const App: React.FC = () => {
   return (
     <div className="bg-background h-screen ">
       <div className="flex flex-col items-center">
-        <div className="w-full max-w-6xl pt-20 ">
-          <Header /> {/* Use the Header component */}
+        <div className="flex w-full max-w-6xl ">
+          <Header /> 
         </div>
 
         <EmailTag></EmailTag>
