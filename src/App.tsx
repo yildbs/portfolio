@@ -2,21 +2,33 @@
 import React from "react";
 import Header from "./components/headers/Header"; // Import the Header component
 import AboutMe from "./components/contents/AboutMe";
+import Education from "./components/contents/Education";
+import Experience from "./components/contents/Experience";
+import EmailTag from "./components/headers/EmailTag";
 
 const App: React.FC = () => {
   return (
-    <div className="bg-emerald-200 h-screen ">
+    <div className="bg-background h-screen ">
       <div className="flex flex-col items-center">
-        <div>Test</div>
-        <div>Test</div>
-        <div>Test</div>
-        <div>Test</div>
-        <div className="w-full max-w-4xl ">
+        <div className="w-full max-w-6xl pt-20 ">
           <Header /> {/* Use the Header component */}
         </div>
-        <main className="w-full max-w-7xl px-10">
-          <div>Main content</div>
-          <AboutMe></AboutMe>
+
+        <EmailTag></EmailTag>
+
+        <main className="max-w-90 max-w-7xl px-10 py-20">
+
+          <div className="flex h-fit px-10 py-10">
+            <AboutMe></AboutMe>
+          </div>
+
+          <div className="flex h-fit px-10 py-10">
+            <Education></Education>
+          </div>
+
+          <div className="flex h-fit px-10 py-10">
+            <Experience />
+          </div>
         </main>
       </div>
     </div>

@@ -1,11 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./index.html",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./index.html"],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        90: "90%",
+      },
+      colors: {
+        content: "#d8dadc", // normal text content color
+        title: "#003333", // text title color
+        accent: "#3f6382", // icon, numbering for accent
+        background: "#a8becf",
+      },
+    },
   },
   plugins: [],
 };
