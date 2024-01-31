@@ -30,12 +30,11 @@ const Header: React.FC = () => {
   }, [lastScrollY]);
 
   return (
-
-    // <header
-    //   className={`fixed top-0 left-0 w-full transition-transform duration-300 ${
-    //     !isVisible && "-translate-y-full"
-    //   }`}
-    // >
+    <header
+      className={`flex w-full max-w-6xl fixed w-full transition-transform duration-300 ${
+        !isVisible && "-translate-y-full"
+      }`}
+    >
       <div className="w-full flex flex-row flow-root">
         <div className="w-fit h-full flex items-center float-left ">
           <NameTag />
@@ -44,7 +43,7 @@ const Header: React.FC = () => {
           <NavBar />
         </div>
       </div>
-    // </header>
+    </header>
   );
 };
 
