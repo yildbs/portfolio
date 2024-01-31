@@ -8,14 +8,14 @@ import EmailTag from "./components/headers/EmailTag";
 
 const App: React.FC = () => {
   return (
-    <div className="bg-background h-screen ">
+    <div className="bg-background h-full">
       <div className="flex flex-col items-center">
         <Header />
 
         <EmailTag></EmailTag>
 
         <main className="max-w-90 max-w-7xl px-10 py-20">
-          <div className="flex h-fit px-10 py-10">
+          <div className="flex h-fit px-10 py-20">
             <AboutMe></AboutMe>
           </div>
 

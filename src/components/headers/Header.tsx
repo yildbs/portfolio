@@ -31,7 +31,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`flex w-full max-w-6xl fixed w-full transition-transform duration-300 ${
+      className={`z-50 flex w-full max-w-6xl fixed w-full bg-background transition-transform duration-300 ${
         !isVisible && "-translate-y-full"
       }`}
     >
