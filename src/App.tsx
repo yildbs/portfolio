@@ -5,7 +5,7 @@ import AboutMe from "./components/contents/AboutMe";
 import Education from "./components/contents/Education";
 import Experience from "./components/contents/Experience";
 import EmailTag from "./components/headers/EmailTag";
-import Timeline from "./components/contents/timeline/Timeline";
+import Timeline from "./components/contents/Timeline";
 
 const App: React.FC = () => {
   return (
