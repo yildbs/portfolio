@@ -68,7 +68,7 @@ export class AffiliationExperience {
     const firstTimestamp = this._root.startTimestamp;
 
     const elapsedDays = (this.when - firstTimestamp) / 1000 / 86400;
-    const size = 20;
+    const size = 15;
     const y = elapsedDays * pxPerDay;
     return (
       <>

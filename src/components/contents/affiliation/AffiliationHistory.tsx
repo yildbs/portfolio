@@ -59,9 +59,10 @@ export class AffiliationHistory {
   render(index: number, firstTimestamp: number, pxPerDay: number) {
     const elapsedDays = (this._startTimestamp - firstTimestamp) / 1000 / 86400;
     const widthMain = 300;
-    const isLeft = index % 2 == 0;
+    // const isLeft = index % 2 == 0;
+    const isLeft = true;
 
-    const verticalBarWidth = 30;
+    const verticalBarWidth = 15;
     const barMargin = 10;
     const barX = isLeft ? widthMain - barMargin - verticalBarWidth : barMargin;
 
@@ -94,11 +95,8 @@ export class AffiliationHistory {
             height={heightDate}
             x={dateX}
             y={0}
-            text={
-              convertTimestampToYYYYMM(this._startTimestamp) +
-              " " +
-              this._startDescription
-            }
+            date={convertTimestampToYYYYMM(this._startTimestamp)}
+            text={this._startDescription}
           />
 
           {this._isEnded && (
@@ -109,14 +107,7 @@ export class AffiliationHistory {
                 height={heightDate}
                 x={dateX}
                 y={heightMain - heightDate}
-                text={convertTimestampToYYYYMM(this._endTimestamp)}
-              />
-              <AffiliationText
-                align={dateAlign}
-                width={widthDate}
-                height={heightDate}
-                x={dateX}
-                y={heightMain - heightDate * 2}
+                date={convertTimestampToYYYYMM(this._endTimestamp)}
                 text={this._endDescription}
               />
             </>
@@ -128,6 +119,7 @@ export class AffiliationHistory {
               height={heightDate}
               x={dateX}
               y={heightMain - heightDate}
+              date={undefined}
               text={this._endDescription}
             />
           )}
