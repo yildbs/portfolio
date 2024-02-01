@@ -11,6 +11,8 @@ export default {
         title: "#003333", // text title color
         accent: "#3f6382", // icon, numbering for accent
         background: "#a8becf",
+        // debug: "#ffff0000", // not showing this color
+        debug: "#ffff00FF", //DEBUG
       },
     },
   },
