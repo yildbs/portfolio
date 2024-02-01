@@ -1,16 +1,9 @@
 import Title from "./Title";
-import history from "./affiliation/AffiliationHistoryData";
+import history from "../../MyHistory";
 
 export default function Timeline() {
   const timestampMin = Math.min(...history.map((h) => h.startTimestamp));
-  // const timestampMax = Math.max(
-  //   ...history.map((h) => h.endTimestamp),
-  //   Date.now()
-  // );
-
-  // const days = (timestampMax - timestampMin) / 1000 / 86400;
   const pxPerDay = 0.33;
-
   return (
     <>
       <div className="w-full flex float-left flex-col">

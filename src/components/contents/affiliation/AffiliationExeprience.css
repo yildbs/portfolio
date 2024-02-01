@@ -1,0 +1,10 @@
+#popup-div {
+  display: none;
+  position: absolute;
+  /* Style your popup div here */
+  /* Position it according to your needs */
+}
+
+#hover-div:hover #popup-div {
+  display: block;
+}

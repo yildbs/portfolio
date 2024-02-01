@@ -16,22 +16,26 @@ export class AffiliationHistory {
   _endTimestamp: number;
   _isEnded = true;
 
-  _experiences: AffiliationExperience[] = []
+  _experiences: AffiliationExperience[] = [];
 
   public get days() {
     return (this._endTimestamp - this._startTimestamp) / 1000 / 86400;
   }
 
-  public get startTimestamp(){
+  public get startTimestamp() {
     return this._startTimestamp;
+  }
+
+  public pushExperience(exp: AffiliationExperience) {
+    exp.setRoot(this);
+    this._experiences.push(exp);
   }
 
   constructor(
     startDate_yyyymmdd: string,
     endDate_yyyymmdd: string,
     startDescription: string,
-    endDescription: string,
-    experiences: AffiliationExperience[] = []
+    endDescription: string
   ) {
     if (endDate_yyyymmdd === "0") {
       endDate_yyyymmdd = convertTimestampToYYYYMMDD(Date.now());
@@ -42,7 +46,7 @@ export class AffiliationHistory {
     this._endDate_yyyymmdd = endDate_yyyymmdd;
     this._startDescription = startDescription;
     this._endDescription = endDescription;
-    this._experiences = experiences;
+    this._experiences = [];
 
     this._startTimestamp = convertYYYYMMDDToTimestamp(startDate_yyyymmdd);
     this._endTimestamp = convertYYYYMMDDToTimestamp(endDate_yyyymmdd);
@@ -57,17 +61,16 @@ export class AffiliationHistory {
     const widthMain = 300;
     const isLeft = index % 2 == 0;
 
-    const circleSize = 30;
+    const verticalBarWidth = 30;
     const barMargin = 10;
-    const barX = isLeft ? widthMain - barMargin - circleSize : barMargin;
+    const barX = isLeft ? widthMain - barMargin - verticalBarWidth : barMargin;
 
     const dateMargin = 10;
     const heightMain = this.days * pxPerDay;
     const widthDate = widthMain * 0.8;
     const dateX = isLeft
-      ? widthMain - widthDate - barMargin - circleSize - dateMargin
-      : barX + circleSize + dateMargin;
-    // const widthDate = widthMain;
+      ? widthMain - widthDate - barMargin - verticalBarWidth - dateMargin
+      : barX + verticalBarWidth + dateMargin;
     const heightDate = 30;
     const dateAlign = isLeft ? "text-right" : "text-left";
     return (
@@ -130,11 +133,15 @@ export class AffiliationHistory {
           )}
 
           <AffiliationVerticalBar
-            circleSize={circleSize}
+            circleSize={verticalBarWidth}
             height={heightMain}
             x={barX}
             y={0}
           />
+
+          {this._experiences.map((experience, index) =>
+            experience.renderPoint(barX + verticalBarWidth / 2, pxPerDay)
+          )}
         </div>
       </>
     );
