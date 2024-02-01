@@ -59,21 +59,27 @@ export class AffiliationHistory {
   render(index: number, firstTimestamp: number, pxPerDay: number) {
     const elapsedDays = (this._startTimestamp - firstTimestamp) / 1000 / 86400;
     const widthMain = 300;
-    // const isLeft = index % 2 == 0;
-    const isLeft = true;
+    const isLeft = index % 2 == 0;
+    // const isLeft = true;
 
-    const verticalBarWidth = 15;
+    const verticalBarWidth = 14;
     const barMargin = 10;
-    const barX = isLeft ? widthMain - barMargin - verticalBarWidth : barMargin;
+    // const barX = isLeft ? widthMain - barMargin - verticalBarWidth : barMargin;
+    let barX = widthMain - barMargin - verticalBarWidth;
+    if(isLeft){
+      // barX -= verticalBarWidth;
+    }
 
     const dateMargin = 10;
     const heightMain = this.days * pxPerDay;
     const widthDate = widthMain * 0.8;
-    const dateX = isLeft
-      ? widthMain - widthDate - barMargin - verticalBarWidth - dateMargin
-      : barX + verticalBarWidth + dateMargin;
+    // const dateX = isLeft
+    //   ? widthMain - widthDate - barMargin - verticalBarWidth - dateMargin
+    //   : barX + verticalBarWidth + dateMargin;
+
+    const dateX = widthMain - widthDate - barMargin - verticalBarWidth - dateMargin
     const heightDate = 30;
-    const dateAlign = isLeft ? "text-right" : "text-left";
+    const dateAlign = "text-right";
     return (
       <>
         <div
@@ -83,8 +89,7 @@ export class AffiliationHistory {
             height: heightMain + "px",
             transform:
               "translate(" +
-              (isLeft ? 0 : widthMain) +
-              "px, " +
+              "0px, " +
               elapsedDays * pxPerDay +
               "px)",
           }}
@@ -129,6 +134,7 @@ export class AffiliationHistory {
             height={heightMain}
             x={barX}
             y={0}
+            color={isLeft ? "bg-primaryalpha" : "bg-secondaryalpha"}
           />
 
           {this._experiences.map((experience, index) =>

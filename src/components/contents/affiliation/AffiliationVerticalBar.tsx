@@ -3,11 +3,12 @@ export default function AffiliationVerticalBar(props: {
   height: number;
   x: number;
   y: number;
+  color: string;
 }) {
   return (
     <div
       id="verticalbar"
-      className={"absolute bg-accent rounded-full"}
+      className={"absolute rounded-full " + props.color}
       style={{
         width: props.circleSize + "px",
         height: props.height + "px",

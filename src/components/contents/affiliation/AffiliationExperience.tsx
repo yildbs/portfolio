@@ -46,7 +46,7 @@ export class AffiliationExperience {
     console.log("Hello");
     return (
       <div
-        className="bg-accent2"
+        className="bg-secondary"
         style={{
           width: size + "px",
           height: size + "px",

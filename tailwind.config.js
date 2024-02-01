@@ -9,8 +9,10 @@ export default {
       colors: {
         content: "#d8dadc", // normal text content color
         title: "#003333", // text title color
-        accent: "#3f6382", // icon, numbering for accent
-        accent2: "#ffffff", // icon, numbering for accent
+        primary: "#3f6382", // icon, numbering for primary
+        secondary: "#63823f", // icon, numbering for primary
+        primaryalpha: "#3f6382aa", // icon, numbering for primary
+        secondaryalpha: "#63823faa", // icon, numbering for primary
         background: "#a8becf",
         // debug: "#ffff0000", // not showing this color
         debug: "#ffff00FF", //DEBUG
