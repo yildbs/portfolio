@@ -9,7 +9,7 @@ let uos= new AffiliationHistory(
   ""
 );
 let danusys = new AffiliationHistory("20161101", "20200331", "Danusys", "Join to Danusys", "");
-let spain = new AffiliationHistory("20200901", "20210201", "Spain", "Go to Spain", "Return to Korea");
+let spain = new AffiliationHistory("20200831", "20210201", "Spain", "Go to Spain", "Return to Korea");
 let innodep = new AffiliationHistory("20210322", "20211007", "Innodep", "Join to Innodep", "");
 let deepixel = new AffiliationHistory("20211018", "0", "Deepixel", "Join to Deepixel", "ing..");
 
@@ -17,8 +17,8 @@ let deepixel = new AffiliationHistory("20211018", "0", "Deepixel", "Join to Deep
 // uos_bachelor.pushExperience(new AffiliationExperience("20120301", "20120301", "uos1"))
 // uos_master.pushExperience(new AffiliationExperience("20150301", "20170228", "master"))
 
-uos.pushExperience(new AffiliationExperience("Bachelor's Degree", "20150214"))
-uos.pushExperience(new AffiliationExperience("Master's Degree", "20170214")) 
+uos.pushExperience(new AffiliationExperience("UOS Bachelor's Degree", "20150214"))
+uos.pushExperience(new AffiliationExperience("UOS Master's Degree", "20170214")) 
 
 danusys.pushExperience(new AffiliationExperience("Tempaa", "20180214"))
 
