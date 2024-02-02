@@ -15,6 +15,7 @@ export class AffiliationHistory {
   _startTimestamp: number;
   _endTimestamp: number;
   _isEnded = true;
+  _affliliation: string;
 
   _experiences: AffiliationExperience[] = [];
 
@@ -34,6 +35,7 @@ export class AffiliationHistory {
   constructor(
     startDate_yyyymmdd: string,
     endDate_yyyymmdd: string,
+    affiliation: string,
     startDescription: string,
     endDescription: string
   ) {
@@ -44,6 +46,7 @@ export class AffiliationHistory {
 
     this._startDate_yyyymmdd = startDate_yyyymmdd;
     this._endDate_yyyymmdd = endDate_yyyymmdd;
+    this._affliliation = affiliation;
     this._startDescription = startDescription;
     this._endDescription = endDescription;
     this._experiences = [];
@@ -66,7 +69,7 @@ export class AffiliationHistory {
     const barMargin = 10;
     // const barX = isLeft ? widthMain - barMargin - verticalBarWidth : barMargin;
     let barX = widthMain - barMargin - verticalBarWidth;
-    if(isLeft){
+    if (isLeft) {
       // barX -= verticalBarWidth;
     }
 
@@ -77,7 +80,8 @@ export class AffiliationHistory {
     //   ? widthMain - widthDate - barMargin - verticalBarWidth - dateMargin
     //   : barX + verticalBarWidth + dateMargin;
 
-    const dateX = widthMain - widthDate - barMargin - verticalBarWidth - dateMargin
+    const dateX =
+      widthMain - widthDate - barMargin - verticalBarWidth - dateMargin;
     const heightDate = 30;
     const dateAlign = "text-right";
     return (
@@ -87,11 +91,7 @@ export class AffiliationHistory {
           style={{
             width: widthMain + "px",
             height: heightMain + "px",
-            transform:
-              "translate(" +
-              "0px, " +
-              elapsedDays * pxPerDay +
-              "px)",
+            transform: "translate(" + "0px, " + elapsedDays * pxPerDay + "px)",
           }}
         >
           <AffiliationText
@@ -136,11 +136,10 @@ export class AffiliationHistory {
             y={0}
             color={isLeft ? "bg-primaryalpha" : "bg-secondaryalpha"}
           />
-
-          {this._experiences.map((experience, index) =>
-            experience.renderPoint(barX + verticalBarWidth / 2, pxPerDay)
-          )}
         </div>
+        {this._experiences.map((experience, index) =>
+          experience.renderPoint(barX + verticalBarWidth / 2, firstTimestamp, pxPerDay)
+        )}
       </>
     );
   }

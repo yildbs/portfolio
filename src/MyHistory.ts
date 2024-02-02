@@ -1,27 +1,26 @@
 import { AffiliationExperience } from "./components/contents/affiliation/AffiliationExperience";
 import { AffiliationHistory } from "./components/contents/affiliation/AffiliationHistory";
 
-let uos_bachelor = new AffiliationHistory(
+let uos= new AffiliationHistory(
   "20110301",
-  "20150228",
+  "20161031",
   "Univ. of Seoul",
-  "Bachelor's degree"
-);
-let uos_master = new AffiliationHistory(
-  "20150301",
-  "20170228",
   "Univ. of Seoul",
-  "Master's degree"
+  ""
 );
-let danusys = new AffiliationHistory("20161101", "20200331", "Danusys", "");
-let spain = new AffiliationHistory("20200401", "20210201", "Spain", "");
-let innodep = new AffiliationHistory("20210322", "20211007", "Innodep", "");
-let deepixel = new AffiliationHistory("20211018", "0", "Deepixel", "ing..");
+let danusys = new AffiliationHistory("20161101", "20200331", "Danusys", "Join to Danusys", "");
+let spain = new AffiliationHistory("20200901", "20210201", "Spain", "Go to Spain", "Return to Korea");
+let innodep = new AffiliationHistory("20210322", "20211007", "Innodep", "Join to Innodep", "");
+let deepixel = new AffiliationHistory("20211018", "0", "Deepixel", "Join to Deepixel", "ing..");
 
 // uos_bachelor.pushExperience(new AffiliationExperience("20110301", "20110301", "Admission to University of Seoul"))
 // uos_bachelor.pushExperience(new AffiliationExperience("20120301", "20120301", "uos1"))
-
 // uos_master.pushExperience(new AffiliationExperience("20150301", "20170228", "master"))
+
+uos.pushExperience(new AffiliationExperience("Bachelor's Degree", "20150214"))
+uos.pushExperience(new AffiliationExperience("Master's Degree", "20170214")) 
+
+danusys.pushExperience(new AffiliationExperience("Tempaa", "20180214"))
 
 // spain.pushExperience(new AffiliationExperience("20200401", "20210201", "Spain!! "))
 
@@ -29,4 +28,4 @@ let deepixel = new AffiliationHistory("20211018", "0", "Deepixel", "ing..");
 // deepixel.pushExperience(new AffiliationExperience("20220201", "20220301", "Test2 "))
 // deepixel.pushExperience(new AffiliationExperience("20220301", "20220401", "Test3 "))
 
-export default [uos_bachelor, uos_master, danusys, spain, innodep, deepixel];
+export default [uos, danusys, spain, innodep, deepixel];

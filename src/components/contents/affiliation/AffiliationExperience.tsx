@@ -13,6 +13,7 @@ export class AffiliationExperience {
   _title: string;
   _description: string | undefined;
   _isEnded = true;
+  _isJustEvent = false;
   _root: AffiliationHistory | undefined = undefined;
 
   public get days() {
@@ -23,18 +24,24 @@ export class AffiliationExperience {
   }
 
   constructor(
-    startDate_yyyymmdd: string,
-    endDate_yyyymmdd: string,
     title: string,
+    startDate_yyyymmdd: string,
+    endDate_yyyymmdd: string | undefined = undefined,
     description: string | undefined = undefined
   ) {
     this._startDate_yyyymmdd = startDate_yyyymmdd;
-    this._endDate_yyyymmdd = endDate_yyyymmdd;
+    this._endDate_yyyymmdd = startDate_yyyymmdd;
+    if (endDate_yyyymmdd == undefined) {
+      this._isJustEvent = true;
+    }
+
     this._title = title;
     this._description = description;
 
     this._startTimestamp = convertYYYYMMDDToTimestamp(startDate_yyyymmdd);
-    this._endTimestamp = convertYYYYMMDDToTimestamp(endDate_yyyymmdd);
+    this._endTimestamp = convertYYYYMMDDToTimestamp(
+      endDate_yyyymmdd ?? startDate_yyyymmdd
+    );
   }
 
   setRoot(root: AffiliationHistory) {
@@ -43,7 +50,6 @@ export class AffiliationExperience {
 
   renderDetail() {
     const size = 300;
-    console.log("Hello");
     return (
       <div
         className="bg-secondary"
@@ -52,20 +58,28 @@ export class AffiliationExperience {
           height: size + "px",
         }}
       >
-        <p>
-          {convertTimestampToYYYYMM(this._startTimestamp)} ~ {convertTimestampToYYYYMM(this._endTimestamp)}
-        </p>
-        TEST
+        {!this._isJustEvent && (
+          <p>
+            {convertTimestampToYYYYMM(this._startTimestamp)} ~{" "}
+            {convertTimestampToYYYYMM(this._endTimestamp)}
+          </p>
+        )}
+        {this._isJustEvent && (
+          <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
+        )}
+
+        {this._title}
+        {this._description}
       </div>
     );
   }
 
-  renderPoint(x: number, pxPerDay: number) {
+  renderPoint(x: number, firstTimestamp: number, pxPerDay: number) {
     if (this._root == undefined) {
       throw new Error("root must not be undefined");
     }
 
-    const firstTimestamp = this._root.startTimestamp;
+    // const firstTimestamp = this._root.startTimestamp;
 
     const elapsedDays = (this.when - firstTimestamp) / 1000 / 86400;
     const size = 15;
@@ -75,7 +89,7 @@ export class AffiliationExperience {
         <div
           id="hover-div"
           className={
-            "absolute bg-content rounded-full transform hover:scale-150 hover:cursor-pointer transition-transform duration-100"
+            "z-50 absolute bg-content rounded-full transform hover:scale-150 hover:cursor-pointer transition-transform duration-100"
           }
           style={{
             width: size + "px",
@@ -85,6 +99,19 @@ export class AffiliationExperience {
             position: "absolute",
           }}
         >
+          {/* className={"flex pl-1 float-right text-primary font-extrabold text-xl" + props.align} */}
+          {this._isJustEvent && (
+            <div
+              className="flex w-64 float-right justify-end text-base inline-block items-center text-primary "
+              style={{
+                height: size*4 + "px",
+                transform: "translate(" + -size*1.5 + "px, " + -(size*2 - size/2) + "px)",
+              }}
+            >
+              {this._title}
+            </div>
+          )}
+
           <div id="popup-div" className="flex absolute">
             {this.renderDetail()}
           </div>

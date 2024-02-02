@@ -25,14 +25,14 @@ export default function AffiliationText(props: {
       >
         {props.date != undefined && (
           <div
-            className={"flex pl-1 float-right text-primary font-extrabold text-xl" + props.align}
+            className={"flex pl-1 float-right text-primary font-extrabold text-xl " + props.align}
           >
             {props.date}
           </div>
         )}
         {props.text != undefined && (
           <div
-            className={"flex float-right text-primary font-medium text-l" + props.align}
+            className={"flex float-right text-primary font-medium text-xl " + props.align}
           >
             {props.text}
           </div>
