@@ -1,8 +1,8 @@
 import Title from "./Title";
-import history from "../../MyHistory";
+import { AffiliationHistory } from "./affiliation/AffiliationHistory";
 
-export default function Timeline() {
-  const timestampMin = Math.min(...history.map((h) => h.startTimestamp));
+export default function Timeline(props: {history: AffiliationHistory[]}) {
+  const timestampMin = Math.min(...props.history.map((h) => h.startTimestamp));
   const pxPerDay = 0.33;
   return (
     <>
@@ -11,7 +11,7 @@ export default function Timeline() {
         I grow by {pxPerDay}px every day.
         <div className="w-50 flex flex-row">
           <div className="relative" >
-            {history.map((affiliation, index) => affiliation.render(index, timestampMin, pxPerDay))}
+            {props.history.map((affiliation, index) => affiliation.render(index, timestampMin, pxPerDay))}
           </div>
         </div>
       </div>
