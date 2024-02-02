@@ -28,7 +28,7 @@ export class AffiliationHistory {
   }
 
   public pushExperience(exp: AffiliationExperience) {
-    exp.setRoot(this);
+    exp.setRootHistory(this);
     this._experiences.push(exp);
   }
 

@@ -22,6 +22,10 @@ uos.pushExperience(new AffiliationExperience("UOS Master's Degree", "20170214"))
 
 danusys.pushExperience(new AffiliationExperience("Tempaa", "20180214"))
 
+const testExperience = new AffiliationExperience("Test Title", "20170101", "20181231");
+testExperience.addDescription("Test Description");
+danusys.pushExperience(testExperience);
+
 // spain.pushExperience(new AffiliationExperience("20200401", "20210201", "Spain!! "))
 
 // deepixel.pushExperience(new AffiliationExperience("20220101", "20220101", "Test1 "))
