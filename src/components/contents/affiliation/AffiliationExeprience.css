@@ -8,3 +8,16 @@
 #hover-div:hover #popup-div {
   display: block;
 }
+
+#image-in-card {
+  width: 100px; /* Desired width */
+  height: 100px; /* Desired height */
+  overflow: hidden; /* Ensures the image does not spill outside the container */
+}
+
+#image-in-card img {
+  width: 100%; /* Make the image fill the container */
+  height: 100%; /* Make the image fill the container */
+  object-fit: cover; /* Resize and crop as needed to maintain aspect ratio and fill container */
+  object-position: center; /* Adjust the positioning of the image */
+}

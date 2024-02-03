@@ -8,7 +8,7 @@ export default function AffiliationVerticalBar(props: {
   return (
     <div
       id="verticalbar"
-      className={"absolute rounded-full " + props.color}
+      className={"absolute z-10 rounded-full " + props.color}
       style={{
         width: props.circleSize + "px",
         height: props.height + "px",

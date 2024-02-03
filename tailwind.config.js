@@ -11,8 +11,6 @@ export default {
         title: "#003333", // text title color
         primary: "#3f6382", // icon, numbering for primary
         secondary: "#63823f", // icon, numbering for primary
-        primaryalpha: "#3f638299", // icon, numbering for primary
-        secondaryalpha: "#63823f99", // icon, numbering for primary
         background: "#a8becf",
         // debug: "#ffff0000", // not showing this color
         debug: "#ffff00FF", //DEBUG

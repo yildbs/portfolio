@@ -16,6 +16,7 @@ export class AffiliationExperience {
   _referenceUrls: string[] = [];
   _isEnded = true;
   _isJustEvent = false;
+  _images: string[] = [];
   _root: AffiliationHistory | undefined = undefined;
 
   public get days() {
@@ -48,6 +49,10 @@ export class AffiliationExperience {
     this._descriptions.push(description);
   }
 
+  addImage(image: string) {
+    this._images.push(image);
+  }
+
   addReferenceUrl(url: string) {
     this._referenceUrls.push(url);
   }
@@ -56,30 +61,50 @@ export class AffiliationExperience {
     this._root = root;
   }
 
-  renderDetail() {
+  renderCard() {
     const size = 300;
     return (
       <div
-        className="bg-secondary"
+        className="bg-primary rounded-lg "
         style={{
           width: size + "px",
-          height: size + "px",
         }}
       >
-        {!this._isJustEvent && (
-          <p>
-            {convertTimestampToYYYYMM(this._startTimestamp)} ~{" "}
-            {convertTimestampToYYYYMM(this._endTimestamp)}
-          </p>
-        )}
-        {this._isJustEvent && (
-          <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
-        )}
+        <div
+          className="p-2"
+          style={{
+            // transform: "translate(" + padding + "px, " + padding + "px)",
+          }}
+        >
+          <div className="text-sm ">
+            {!this._isJustEvent && (
+              <p>
+                {convertTimestampToYYYYMM(this._startTimestamp)} - {convertTimestampToYYYYMM(this._endTimestamp)}
+              </p>
+            )}
+            {this._isJustEvent && (
+              <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
+            )}
+          </div>
 
-        {this._title}
-        {this._descriptions.map((des) => {
-          return <div>{des}</div>;
-        })}
+          <div className="text-base">{this._title}</div>
+
+          <div className="text-sm pb-2">
+            {this._descriptions.map((des) => {
+              return <div>- {des}</div>;
+            })}
+          </div>
+
+          <div className="whitespace-nowrap bg-content overflow-x-scroll rounded">
+            {this._images.map((image, index) => {
+              return (
+                <div id="image-in-card" className="inline-flex px-1 py-2  ">
+                  <img src={image} className=" " />
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     );
   }
@@ -102,7 +127,7 @@ export class AffiliationExperience {
         <div
           id="hover-div"
           className={
-            "z-50 absolute bg-content rounded-full transform hover:scale-150 hover:cursor-pointer transition-transform duration-100"
+            "z-10 absolute bg-content rounded-full transform hover:scale-125 hover:cursor-pointer transition-transform duration-100"
           }
           style={{
             width: size + "px",
@@ -145,17 +170,21 @@ export class AffiliationExperience {
                 }}
               ></div>
 
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <div className="border-t-2 border-dashed border-primary h-0 w-24"></div>
                 <div className="w-3 h-3 border-primary border-t-2 border-r-2 rotate-45 transform"></div>
-              </div>
+              </div> */}
 
               <div
+              className="-translate-y-1/2"
                 style={{
-                  transform: "translate(" + arrowDistance + "px, " + 0 + "px)",
+                  left: (arrowDistance) + "px",
+                  top: (arrowHeight/2) + "px",
+                  position: "absolute",
+                  // transform: "translate(" + arrowDistance + "px, " + 0 + "px)",
                 }}
               >
-                {this.renderDetail()}
+                {this.renderCard()}
               </div>
             </div>
           )}

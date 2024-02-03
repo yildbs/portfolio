@@ -26,6 +26,9 @@ export class AffiliationHistory {
   public get startTimestamp() {
     return this._startTimestamp;
   }
+  public get endTimestamp() {
+    return this._endTimestamp;
+  }
 
   public pushExperience(exp: AffiliationExperience) {
     exp.setRootHistory(this);
@@ -59,14 +62,15 @@ export class AffiliationHistory {
     }
   }
 
-  render(index: number, firstTimestamp: number, pxPerDay: number) {
+  render(
+    widthMain: number,
+    verticalBarWidth: number,
+    barMargin: number,
+    index: number, firstTimestamp: number, pxPerDay: number) {
     const elapsedDays = (this._startTimestamp - firstTimestamp) / 1000 / 86400;
-    const widthMain = 300;
     const isLeft = index % 2 == 0;
     // const isLeft = true;
 
-    const verticalBarWidth = 14;
-    const barMargin = 10;
     // const barX = isLeft ? widthMain - barMargin - verticalBarWidth : barMargin;
     let barX = widthMain - barMargin - verticalBarWidth;
     if (isLeft) {
@@ -87,7 +91,7 @@ export class AffiliationHistory {
     return (
       <>
         <div
-          className="absolute "
+          className="absolute"
           style={{
             width: widthMain + "px",
             height: heightMain + "px",
@@ -134,7 +138,7 @@ export class AffiliationHistory {
             height={heightMain}
             x={barX}
             y={0}
-            color={isLeft ? "bg-primaryalpha" : "bg-secondaryalpha"}
+            color={isLeft ? "bg-primary" : "bg-secondary"}
           />
         </div>
         {this._experiences.map((experience, index) =>
