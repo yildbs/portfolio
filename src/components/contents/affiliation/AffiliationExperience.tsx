@@ -133,7 +133,7 @@ export class AffiliationExperience {
             width: size + "px",
             height: size + "px",
             left: x - size / 2 + "px",
-            top: y + "px",
+            top: (y-size/2) + "px",
             position: "absolute",
           }}
         >
@@ -157,9 +157,10 @@ export class AffiliationExperience {
 
           {!this._isJustEvent && (
             <div id="popup-div" className="flex absolute">
-              <div
-                className={"absolute bg-content "}
+              {/* <div
+                className={"absolute border-content border-dotted "}
                 style={{
+                  borderTop: "1px gray",
                   width: arrowDistance,
                   height: arrowHeight,
                   transform:
@@ -168,12 +169,30 @@ export class AffiliationExperience {
                     (size / 2 - arrowHeight / 2) +
                     "px)",
                 }}
-              ></div>
+              ></div> */}
 
               {/* <div className="flex items-center">
                 <div className="border-t-2 border-dashed border-primary h-0 w-24"></div>
                 <div className="w-3 h-3 border-primary border-t-2 border-r-2 rotate-45 transform"></div>
               </div> */}
+
+              <div
+                className="absolute border-t  border-dotted  dotted-gray border-content  "
+                style={{
+                  borderRight: "6px dotted gray",
+                  transform: "translate(" + "0px, " + (size / 2 - arrowHeight / 2) + "px)",
+                }}
+              ></div>
+
+
+              {/* <div
+                className="absolute border-dotted border-content z-0 "
+                style={{
+                  borderRight: "4px dotted gray",
+                  height: days * pxPerDay + "px",
+                  transform: "translate(" + centerLineX + "px, 0px)",
+                }}
+              ></div> */}
 
               <div
               className="-translate-y-1/2"

@@ -9,7 +9,19 @@ let uos= new AffiliationHistory(
   ""
 );
 let danusys = new AffiliationHistory("20161101", "20200331", "Danusys", "Danusys", "");
-let spain = new AffiliationHistory("20200831", "20210201", "Spain", "Go to Spain", "Return to Korea");
+
+let spain = new AffiliationHistory("20200831", "20210201", "Spainish", "Go to Spain", "Return to Korea");
+const studySpainish = new AffiliationExperience("Study Spainsh", "20200401", "20200831");
+studySpainish.addDescription("I was planning to leave for Spain right after leaving the company, but due to the coronavirus issue, I ended up studying Spanish in Korea for a few months.");
+spain.pushExperience(studySpainish);
+
+// let spain = new AffiliationHistory("20200401", "20210201", "Spainish", "Study Spainish", "");
+// const goToSpain = new AffiliationExperience("Go to Spain", "20200831");
+// const returnToKorea= new AffiliationExperience("Return to Korea", "20210201");
+// spain.pushExperience(goToSpain);
+// spain.pushExperience(returnToKorea);
+
+
 let innodep = new AffiliationHistory("20210322", "20211007", "Innodep", "Innodep", "");
 let deepixel = new AffiliationHistory("20211018", "0", "Deepixel", "Deepixel", "ing..");
 
