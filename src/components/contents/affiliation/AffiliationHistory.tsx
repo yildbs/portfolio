@@ -91,7 +91,7 @@ export class AffiliationHistory {
     return (
       <>
         <div
-          className="absolute"
+          className="flex absolute"
           style={{
             width: widthMain + "px",
             height: heightMain + "px",

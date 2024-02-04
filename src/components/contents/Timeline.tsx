@@ -11,7 +11,7 @@ export default function Timeline(props: { history: AffiliationHistory[] }) {
   const widthMain = 300;
   const verticalBarWidth = 14;
   const barMargin = 10;
-  const centerLineX = widthMain - verticalBarWidth - barMargin/ 2;
+  const centerLineX = widthMain - verticalBarWidth - barMargin / 2;
   return (
     <>
       <div className="w-full flex float-left flex-col">
@@ -25,9 +25,21 @@ export default function Timeline(props: { history: AffiliationHistory[] }) {
               transform: "translate(" + centerLineX + "px, 0px)",
             }}
           ></div>
-          <div className="absolute">
+          <div
+            className="relative w-full"
+            style={{
+              height: days * pxPerDay + "px",
+            }}
+          >
             {props.history.map((affiliation, index) =>
-              affiliation.render(widthMain, verticalBarWidth, barMargin, index, timestampMin, pxPerDay)
+              affiliation.render(
+                widthMain,
+                verticalBarWidth,
+                barMargin,
+                index,
+                timestampMin,
+                pxPerDay
+              )
             )}
           </div>
         </div>

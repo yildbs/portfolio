@@ -26,11 +26,11 @@ const App: React.FC = () => {
           </div>
 
           <div className="flex h-fit px-10 py-10">
-            <Experience />
+            <Timeline history={history} />
           </div>
 
           <div className="flex h-fit px-10 py-10">
-            <Timeline history={history} />
+            <Experience history={history}/>
           </div>
         </main>
       </div>
