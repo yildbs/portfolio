@@ -18,6 +18,7 @@ export class AffiliationExperience {
   _isJustEvent = false;
   _images: string[] = [];
   _root: AffiliationHistory | undefined = undefined;
+  _featured = false;
 
   public get days() {
     return (this._endTimestamp - this._startTimestamp) / 1000 / 86400;
@@ -49,6 +50,19 @@ export class AffiliationExperience {
     this._descriptions.push(description);
   }
 
+  isJustEvent(){
+    return this._isJustEvent;
+  }
+
+
+  setFeatured(value: boolean){
+    this._featured = value;
+  }
+
+  isFeatured(){
+    return this._featured;
+  }
+
   addImage(image: string) {
     this._images.push(image);
   }
@@ -65,7 +79,7 @@ export class AffiliationExperience {
     const speechBubbleTailLength = 40;
 
     return (
-      <div className={renderLikeSpeechBubble ? "flex items-center" : ""}>
+      <div id="experienceCard" className={renderLikeSpeechBubble ? "flex items-center" : ""}>
         {renderLikeSpeechBubble && (
           <div className="">
             <svg
@@ -82,11 +96,11 @@ export class AffiliationExperience {
         <div
           className={"bg-content rounded-lg "}
           style={{
-            width: width + "px",
+            width: width == 0 ? "100%" : width + "px",
             left: renderLikeSpeechBubble
               ? speechBubbleTailLength + "px"
               : "0px",
-            position: "absolute",
+            position: renderLikeSpeechBubble ? "absolute": "relative",
           }}
         >
           <div className="p-2" style={{}}>

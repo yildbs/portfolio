@@ -15,7 +15,8 @@ export default function Timeline(props: { history: AffiliationHistory[] }) {
   return (
     <>
       <div className="w-full flex float-left flex-col">
-        <Title title={"Timeline"} />I grow by {pxPerDay}px every day.
+        <Title title={"Timeline"} />
+        <div>I grow by {pxPerDay}px every day.</div>
         <div className="w-50 flex flex-row">
           <div
             className="absolute border-dotted border-content z-0 "

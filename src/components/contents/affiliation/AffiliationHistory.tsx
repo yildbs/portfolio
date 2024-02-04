@@ -29,6 +29,9 @@ export class AffiliationHistory {
   public get endTimestamp() {
     return this._endTimestamp;
   }
+  public get experiences() {
+    return this._experiences;
+  }
 
   public pushExperience(exp: AffiliationExperience) {
     exp.setRootHistory(this);

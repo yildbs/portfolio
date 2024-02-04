@@ -38,6 +38,7 @@ const testExperience = new AffiliationExperience("Test Title", "20170101", "2018
 testExperience.addDescription("Test Description 1");
 testExperience.addDescription("Test Description 2");
 testExperience.addDescription("Test Description 3");
+testExperience.setFeatured(true);
 
 import temp1 from "./assets/temp2.png"
 import temp2 from "./assets/temp2.png"
