@@ -170,6 +170,16 @@ export class AffiliationExperience {
               }}
             >
               {this._title}
+
+              <div
+              id="popup-div"
+                className={
+                  "pl-1 text-primary font-bold float-right text-sm "
+                //   "flex pl-1 float-right text-primary font-extrabold text-xl "
+                }
+              >
+                <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
+              </div>
             </div>
           )}
 
