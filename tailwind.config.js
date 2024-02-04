@@ -12,6 +12,7 @@ export default {
         primary: "#3f6382", // icon, numbering for primary
         secondary: "#63823f", // icon, numbering for primary
         background: "#a8becf",
+        light: "#ffffff",
         // debug: "#ffff0000", // not showing this color
         debug: "#ffff00FF", //DEBUG
       },

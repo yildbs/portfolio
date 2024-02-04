@@ -61,48 +61,67 @@ export class AffiliationExperience {
     this._root = root;
   }
 
-  renderCard() {
-    const size = 300;
+  renderCard(width: number, height: number, renderLikeSpeechBubble: boolean) {
+    const speechBubbleTailLength = 40;
+
     return (
-      <div
-        className="bg-primary rounded-lg "
-        style={{
-          width: size + "px",
-        }}
-      >
+      <div className={renderLikeSpeechBubble ? "flex items-center" : ""}>
+        {renderLikeSpeechBubble && (
+          <div className="">
+            <svg
+              className="fill-content"
+              width={speechBubbleTailLength + "px"}
+              height={speechBubbleTailLength / 2 + "px"}
+              viewBox="0 0 100 100"
+            >
+              <path d="M 150,0 L 150,100 60,50 Z"></path>
+            </svg>
+          </div>
+        )}
+
         <div
-          className="p-2"
+          className={"bg-content rounded-lg "}
           style={{
-            // transform: "translate(" + padding + "px, " + padding + "px)",
+            width: width + "px",
+            left: renderLikeSpeechBubble
+              ? speechBubbleTailLength + "px"
+              : "0px",
+            position: "absolute",
           }}
         >
-          <div className="text-sm ">
-            {!this._isJustEvent && (
-              <p>
-                {convertTimestampToYYYYMM(this._startTimestamp)} - {convertTimestampToYYYYMM(this._endTimestamp)}
-              </p>
-            )}
-            {this._isJustEvent && (
-              <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
-            )}
-          </div>
+          <div className="p-2" style={{}}>
+            <div className="flex ">
+              <div className="text-base font-extrabold">{this._title}</div>
+              <div className="flex inline-block text-sm text-gray-600 pl-5 items-center ">
+                {!this._isJustEvent && (
+                  <p>
+                    {convertTimestampToYYYYMM(this._startTimestamp)} -{" "}
+                    {convertTimestampToYYYYMM(this._endTimestamp)}
+                  </p>
+                )}
+                {this._isJustEvent && (
+                  <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
+                )}
+              </div>
+            </div>
 
-          <div className="text-base">{this._title}</div>
+            <div className="text-sm pb-2 rounded ">
+              <div className="pl-2 pt-2 ">
+                {this._descriptions.map((des) => {
+                  return <div>- {des}</div>;
+                })}
+              </div>
+            </div>
 
-          <div className="text-sm pb-2">
-            {this._descriptions.map((des) => {
-              return <div>- {des}</div>;
-            })}
-          </div>
-
-          <div className="whitespace-nowrap bg-content overflow-x-scroll rounded">
-            {this._images.map((image, index) => {
-              return (
-                <div id="image-in-card" className="inline-flex px-1 py-2  ">
-                  <img src={image} className=" " />
-                </div>
-              );
-            })}
+            <div className="whitespace-nowrap overflow-x-scroll rounded">
+              {this._images.map((image, index) => {
+                return (
+                  <div id="image-in-card" className="inline-flex px-1 py-2  ">
+                    <img src={image} className=" " />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -127,17 +146,16 @@ export class AffiliationExperience {
         <div
           id="hover-div"
           className={
-            "z-10 absolute bg-content rounded-full transform hover:scale-125 hover:cursor-pointer transition-transform duration-100"
+            "z-10 absolute bg-content rounded-full transform hover:scale-125 hover:cursor-pointer transition-transform duration-100 "
           }
           style={{
             width: size + "px",
             height: size + "px",
             left: x - size / 2 + "px",
-            top: (y-size/2) + "px",
+            top: y - size / 2 + "px",
             position: "absolute",
           }}
         >
-          {/* className={"flex pl-1 float-right text-primary font-extrabold text-xl" + props.align} */}
           {this._isJustEvent && (
             <div
               className="flex w-64 float-right justify-end text-base inline-block items-center text-primary "
@@ -156,54 +174,16 @@ export class AffiliationExperience {
           )}
 
           {!this._isJustEvent && (
-            <div id="popup-div" className="flex absolute">
-              {/* <div
-                className={"absolute border-content border-dotted "}
-                style={{
-                  borderTop: "1px gray",
-                  width: arrowDistance,
-                  height: arrowHeight,
-                  transform:
-                    "translate(" +
-                    "0px, " +
-                    (size / 2 - arrowHeight / 2) +
-                    "px)",
-                }}
-              ></div> */}
-
-              {/* <div className="flex items-center">
-                <div className="border-t-2 border-dashed border-primary h-0 w-24"></div>
-                <div className="w-3 h-3 border-primary border-t-2 border-r-2 rotate-45 transform"></div>
-              </div> */}
-
-              <div
-                className="absolute border-t  border-dotted  dotted-gray border-content  "
-                style={{
-                  borderRight: "6px dotted gray",
-                  transform: "translate(" + "0px, " + (size / 2 - arrowHeight / 2) + "px)",
-                }}
-              ></div>
-
-
-              {/* <div
-                className="absolute border-dotted border-content z-0 "
-                style={{
-                  borderRight: "4px dotted gray",
-                  height: days * pxPerDay + "px",
-                  transform: "translate(" + centerLineX + "px, 0px)",
-                }}
-              ></div> */}
-
-              <div
-              className="-translate-y-1/2"
-                style={{
-                  left: (arrowDistance) + "px",
-                  top: (arrowHeight/2) + "px",
-                  position: "absolute",
-                  // transform: "translate(" + arrowDistance + "px, " + 0 + "px)",
-                }}
-              >
-                {this.renderCard()}
+            <div
+              id="popup-div"
+              className="flex relative"
+              style={{
+                width: size + "px",
+                height: size + "px",
+              }}
+            >
+              <div className="absolute top-1/2 -translate-y-1/2">
+                {this.renderCard(400, 0, true)}
               </div>
             </div>
           )}
