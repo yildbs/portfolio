@@ -50,16 +50,15 @@ export class AffiliationExperience {
     this._descriptions.push(description);
   }
 
-  isJustEvent(){
+  isJustEvent() {
     return this._isJustEvent;
   }
 
-
-  setFeatured(value: boolean){
+  setFeatured(value: boolean) {
     this._featured = value;
   }
 
-  isFeatured(){
+  isFeatured() {
     return this._featured;
   }
 
@@ -79,7 +78,10 @@ export class AffiliationExperience {
     const speechBubbleTailLength = 40;
 
     return (
-      <div id="experienceCard" className={renderLikeSpeechBubble ? "flex items-center" : ""}>
+      <div
+        id="experienceCard"
+        className={renderLikeSpeechBubble ? "flex items-center" : ""}
+      >
         {renderLikeSpeechBubble && (
           <div className="">
             <svg
@@ -100,7 +102,7 @@ export class AffiliationExperience {
             left: renderLikeSpeechBubble
               ? speechBubbleTailLength + "px"
               : "0px",
-            position: renderLikeSpeechBubble ? "absolute": "relative",
+            position: renderLikeSpeechBubble ? "absolute" : "relative",
           }}
         >
           <div className="p-2" style={{}}>
@@ -119,23 +121,52 @@ export class AffiliationExperience {
               </div>
             </div>
 
-            <div className="text-sm pb-2 rounded ">
-              <div className="pl-2 pt-2 ">
-                {this._descriptions.map((des) => {
-                  return <div>- {des}</div>;
-                })}
-              </div>
-            </div>
-
-            <div className="whitespace-nowrap overflow-x-scroll rounded">
-              {this._images.map((image, index) => {
-                return (
-                  <div id="image-in-card" className="inline-flex px-1 py-2  ">
-                    <img src={image} className=" " />
+            {this._isJustEvent && (
+              <>
+                <div className="text-sm pb-2 rounded ">
+                  <div className="pl-2 pt-2 ">
+                    {this._descriptions.map((des) => {
+                      return <div>- {des}</div>;
+                    })}
                   </div>
-                );
-              })}
-            </div>
+                </div>
+                <div className="whitespace-nowrap overflow-x-scroll rounded">
+                  {this._images.map((image, index) => {
+                    return (
+                      <div
+                        id="image-in-card"
+                        className="inline-flex px-1 py-2  "
+                      >
+                        <img src={image} className=" " />
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            )}
+            {!this._isJustEvent && (
+              <>
+                <div className="text-sm pb-2 rounded flex flex-row ">
+                  <div className="pl-2 pt-2 w-fit pr-5">
+                    {this._descriptions.map((des) => {
+                      return <div>- {des}</div>;
+                    })}
+                  </div>
+                  <div>
+                    {this._images.map((image, index) => {
+                      return (
+                        <div
+                          id="image-in-card"
+                          className="inline-flex px-1 py-2  "
+                        >
+                          <img src={image} className=" " />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -186,10 +217,8 @@ export class AffiliationExperience {
               {this._title}
 
               <div
-              id="popup-div"
-                className={
-                  "pl-1 text-primary font-bold float-right text-sm "
-                }
+                id="popup-div"
+                className={"pl-1 text-primary font-bold float-right text-sm "}
               >
                 <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
               </div>
