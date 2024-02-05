@@ -6,7 +6,7 @@ import Education from "./components/contents/Education";
 import Experience from "./components/contents/Experience";
 import EmailTag from "./components/headers/EmailTag";
 import Timeline from "./components/contents/Timeline";
-import history from "./MyHistory";
+import history from "./MyHistory.ts"
 
 const App: React.FC = () => {
   return (
