@@ -24,7 +24,7 @@ export class AffiliationExperience {
     return (this._endTimestamp - this._startTimestamp) / 1000 / 86400;
   }
   public get when() {
-    if(this._isJustEvent){
+    if (this._isJustEvent) {
       return this._startTimestamp;
     }
     return (this._endTimestamp + this._startTimestamp) / 2;
@@ -149,8 +149,10 @@ export class AffiliationExperience {
                     {this._referenceUrls.map((url, index) => {
                       return (
                         <>
-                          <div className="flex flex-row text-xs text-gray-800">
-                            <a href={url[1]}>- {url[0]}</a>
+                          <div className="flex flex-row pl-2 text-xs text-gray-800">
+                            <a href={url[1]} target="_blank">
+                              - {url[0]}
+                            </a>
                           </div>
                         </>
                       );
@@ -193,51 +195,6 @@ export class AffiliationExperience {
             position: "absolute",
           }}
         >
-          {false && (
-            <>
-              {this._isJustEvent && (
-                <div
-                  className="flex w-64 float-right justify-end text-base inline-block items-center text-primary "
-                  style={{
-                    height: size * 4 + "px",
-                    transform:
-                      "translate(" +
-                      -size * 1.5 +
-                      "px, " +
-                      -(size * 2 - size / 2) +
-                      "px)",
-                  }}
-                >
-                  {this._title}
-
-                  <div
-                    id="popup-div"
-                    className={
-                      "pl-1 text-primary font-bold float-right text-sm "
-                    }
-                  >
-                    <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
-                  </div>
-                </div>
-              )}
-
-              {!this._isJustEvent && (
-                <div
-                  id="popup-div"
-                  className="flex relative"
-                  style={{
-                    width: size + "px",
-                    height: size + "px",
-                  }}
-                >
-                  <div className="absolute top-1/2 -translate-y-1/2">
-                    {this.renderCard(400, 0, true)}
-                  </div>
-                </div>
-              )}
-            </>
-          )}
-
           {!this._isJustEvent && (
             <div id="popup-div" className="absolute top-1/2 -translate-y-1/2">
               {this.renderCard(400, 0, true)}
@@ -245,7 +202,7 @@ export class AffiliationExperience {
           )}
 
           <div
-            className="flex w-64 float-right justify-end text-base inline-block items-center text-primary "
+            className="flex w-64 float-right justify-end text-xs inline-block items-center text-primary "
             style={{
               height: size * 4 + "px",
               transform:
@@ -262,7 +219,9 @@ export class AffiliationExperience {
               id="popup-div"
               className={"pl-1 text-primary font-bold float-right text-sm "}
             >
-              <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
+              {this._isJustEvent && (
+                <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
+              )}
             </div>
           </div>
         </div>

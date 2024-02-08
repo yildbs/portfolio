@@ -10,7 +10,7 @@ let uos= new AffiliationHistory(
   ""
 );
 
-uos.pushExperience(new AffiliationExperience("UOS Bachelor's Degree", "20150214"))
-uos.pushExperience(new AffiliationExperience("UOS Master's Degree", "20170214")) 
+uos.pushExperience(new AffiliationExperience("UOS 전자전기컴퓨터공학 학사졸업", "20150214"))
+uos.pushExperience(new AffiliationExperience("UOS 전자전기컴퓨터공학 석사졸업", "20170214")) 
 
 export default uos;
