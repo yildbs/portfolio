@@ -13,7 +13,7 @@ export class AffiliationExperience {
   _title: string;
   //   _description: string | undefined;
   _descriptions: string[] = [];
-  _referenceUrls: string[] = [];
+  _referenceUrls: [string, string][] = [];
   _isEnded = true;
   _isJustEvent = false;
   _images: string[] = [];
@@ -66,8 +66,8 @@ export class AffiliationExperience {
     this._images.push(image);
   }
 
-  addReferenceUrl(url: string) {
-    this._referenceUrls.push(url);
+  addReferenceUrl(title: string, url: string) {
+    this._referenceUrls.push([title, url]);
   }
 
   setRootHistory(root: AffiliationHistory) {
@@ -121,52 +121,41 @@ export class AffiliationExperience {
               </div>
             </div>
 
-            {this._isJustEvent && (
-              <>
-                <div className="text-sm pb-2 rounded ">
-                  <div className="pl-2 pt-2 ">
-                    {this._descriptions.map((des) => {
-                      return <div>- {des}</div>;
-                    })}
-                  </div>
-                </div>
-                <div className="whitespace-nowrap overflow-x-scroll rounded">
-                  {this._images.map((image, index) => {
-                    return (
-                      <div
-                        id="image-in-card"
-                        className="inline-flex px-1 py-2  "
-                      >
-                        <img src={image} className=" " />
-                      </div>
-                    );
+            <>
+              <div className="text-sm pb-2 rounded ">
+                <div className="pl-2 pt-2 ">
+                  {this._descriptions.map((des) => {
+                    return <div>- {des}</div>;
                   })}
                 </div>
-              </>
-            )}
-            {!this._isJustEvent && (
-              <>
-                <div className="text-sm pb-2 rounded flex flex-row ">
-                  <div className="pl-2 pt-2 w-fit pr-5">
-                    {this._descriptions.map((des) => {
-                      return <div>- {des}</div>;
-                    })}
-                  </div>
-                  <div>
-                    {this._images.map((image, index) => {
+              </div>
+              <div className="whitespace-nowrap overflow-x-scroll rounded">
+                {this._images.map((image, index) => {
+                  return (
+                    <div id="image-in-card" className="inline-flex px-1 py-2  ">
+                      <img src={image} className=" " />
+                    </div>
+                  );
+                })}
+              </div>
+
+              {this._referenceUrls.length > 0 && (
+                <>
+                  <p className="font-bold text-xs">Reference URL</p>
+                  <div className="whitespace-nowrap overflow-x-scroll rounded">
+                    {this._referenceUrls.map((url, index) => {
                       return (
-                        <div
-                          id="image-in-card"
-                          className="inline-flex px-1 py-2  "
-                        >
-                          <img src={image} className=" " />
-                        </div>
+                        <>
+                          <div className="flex flex-row text-xs ">
+                            <a href={url[1]}>- {url[0]}</a>
+                          </div>
+                        </>
                       );
                     })}
                   </div>
-                </div>
-              </>
-            )}
+                </>
+              )}
+            </>
           </div>
         </div>
       </div>
@@ -191,7 +180,7 @@ export class AffiliationExperience {
         <div
           id="hover-div"
           className={
-            "z-10 absolute bg-content rounded-full transform hover:scale-125 hover:cursor-pointer transition-transform duration-100 "
+            "z-10 absolute bg-content rounded-full transform hover:scale-125 transition-transform duration-100 "
           }
           style={{
             width: size + "px",
@@ -201,44 +190,78 @@ export class AffiliationExperience {
             position: "absolute",
           }}
         >
-          {this._isJustEvent && (
-            <div
-              className="flex w-64 float-right justify-end text-base inline-block items-center text-primary "
-              style={{
-                height: size * 4 + "px",
-                transform:
-                  "translate(" +
-                  -size * 1.5 +
-                  "px, " +
-                  -(size * 2 - size / 2) +
-                  "px)",
-              }}
-            >
-              {this._title}
+          {false && (
+            <>
+              {this._isJustEvent && (
+                <div
+                  className="flex w-64 float-right justify-end text-base inline-block items-center text-primary "
+                  style={{
+                    height: size * 4 + "px",
+                    transform:
+                      "translate(" +
+                      -size * 1.5 +
+                      "px, " +
+                      -(size * 2 - size / 2) +
+                      "px)",
+                  }}
+                >
+                  {this._title}
 
-              <div
-                id="popup-div"
-                className={"pl-1 text-primary font-bold float-right text-sm "}
-              >
-                <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
-              </div>
-            </div>
+                  <div
+                    id="popup-div"
+                    className={
+                      "pl-1 text-primary font-bold float-right text-sm "
+                    }
+                  >
+                    <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
+                  </div>
+                </div>
+              )}
+
+              {!this._isJustEvent && (
+                <div
+                  id="popup-div"
+                  className="flex relative"
+                  style={{
+                    width: size + "px",
+                    height: size + "px",
+                  }}
+                >
+                  <div className="absolute top-1/2 -translate-y-1/2">
+                    {this.renderCard(400, 0, true)}
+                  </div>
+                </div>
+              )}
+            </>
           )}
 
           {!this._isJustEvent && (
-            <div
-              id="popup-div"
-              className="flex relative"
-              style={{
-                width: size + "px",
-                height: size + "px",
-              }}
-            >
-              <div className="absolute top-1/2 -translate-y-1/2">
-                {this.renderCard(400, 0, true)}
-              </div>
+            <div id="popup-div" className="absolute top-1/2 -translate-y-1/2">
+              {this.renderCard(400, 0, true)}
             </div>
           )}
+
+          <div
+            className="flex w-64 float-right justify-end text-base inline-block items-center text-primary "
+            style={{
+              height: size * 4 + "px",
+              transform:
+                "translate(" +
+                -size * 1.5 +
+                "px, " +
+                -(size * 2 - size / 2) +
+                "px)",
+            }}
+          >
+            {this._title}
+
+            <div
+              id="popup-div"
+              className={"pl-1 text-primary font-bold float-right text-sm "}
+            >
+              <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
+            </div>
+          </div>
         </div>
       </>
     );
