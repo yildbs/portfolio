@@ -1,0 +1,12 @@
+#popup-div {
+  display: none;
+
+  /* transition-transform duration-100  */
+  /* position: absolute; */
+  /* Style your popup div here */
+  /* Position it according to your needs */
+}
+
+#hover-div:hover #popup-div {
+  display: block;
+}

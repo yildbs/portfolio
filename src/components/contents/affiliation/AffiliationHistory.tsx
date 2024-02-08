@@ -69,7 +69,10 @@ export class AffiliationHistory {
     widthMain: number,
     verticalBarWidth: number,
     barMargin: number,
-    index: number, firstTimestamp: number, pxPerDay: number) {
+    index: number,
+    firstTimestamp: number,
+    pxPerDay: number
+  ) {
     const elapsedDays = (this._startTimestamp - firstTimestamp) / 1000 / 86400;
     const isLeft = index % 2 == 0;
     // const isLeft = true;
@@ -107,11 +110,12 @@ export class AffiliationHistory {
             height={heightDate}
             x={dateX}
             y={0}
-            date={convertTimestampToYYYYMM(this._startTimestamp)}
+            startDate={convertTimestampToYYYYMM(this._endTimestamp)}
+            endDate={convertTimestampToYYYYMM(this._endTimestamp)}
             text={this._startDescription}
           />
 
-          {this._isEnded && (
+          {/* {this._isEnded && (
             <>
               <AffiliationText
                 align={dateAlign}
@@ -119,11 +123,12 @@ export class AffiliationHistory {
                 height={heightDate}
                 x={dateX}
                 y={heightMain - heightDate}
-                date={convertTimestampToYYYYMM(this._endTimestamp)}
+                startDate={convertTimestampToYYYYMM(this._endTimestamp)}
+                endDate={convertTimestampToYYYYMM(this._endTimestamp)}
                 text={this._endDescription}
               />
             </>
-          )}
+          )} */}
           {!this._isEnded && (
             <AffiliationText
               align={dateAlign}
@@ -131,7 +136,8 @@ export class AffiliationHistory {
               height={heightDate}
               x={dateX}
               y={heightMain - heightDate}
-              date={undefined}
+              startDate={undefined}
+              endDate={undefined}
               text={this._endDescription}
             />
           )}
@@ -145,7 +151,11 @@ export class AffiliationHistory {
           />
         </div>
         {this._experiences.map((experience, index) =>
-          experience.renderPoint(barX + verticalBarWidth / 2, firstTimestamp, pxPerDay)
+          experience.renderPoint(
+            barX + verticalBarWidth / 2,
+            firstTimestamp,
+            pxPerDay
+          )
         )}
       </>
     );

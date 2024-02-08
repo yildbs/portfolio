@@ -1,13 +1,16 @@
+import "./AffiliationText.css";
+
 export default function AffiliationText(props: {
   align: string;
   width: number;
   height: number;
   x: number;
   y: number;
-  date: string | undefined;
+  startDate: string | undefined;
+  endDate: string | undefined;
   text: string | undefined;
 }) {
-  if (props.date == undefined && props.text == undefined) {
+  if (props.startDate == undefined && props.text == undefined) {
     throw new Error("Both props.date and props.text must not be undefined.");
   }
 
@@ -23,16 +26,28 @@ export default function AffiliationText(props: {
           transform: "translate(" + props.x + "px, " + props.y + "px)",
         }}
       >
-        {props.date != undefined && (
+        {props.startDate != undefined && (
           <div
-            className={"flex pl-1 float-right text-primary font-extrabold text-xl " + props.align}
+            className={
+              "flex pl-1 float-right text-primary font-extrabold text-xl " +
+              props.align
+            }
           >
-            {props.date}
+            <div id="hover-div" className="flex flex-row ">
+              <div>{props.startDate}</div>
+              {props.endDate != undefined && (
+                <>
+                  <div id="popup-div">- {props.endDate}</div>
+                </>
+              )}
+            </div>
           </div>
         )}
         {props.text != undefined && (
           <div
-            className={"flex float-right text-primary font-medium text-xl " + props.align}
+            className={
+              "flex float-right text-primary font-medium text-xl " + props.align
+            }
           >
             {props.text}
           </div>
