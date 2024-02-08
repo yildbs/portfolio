@@ -24,6 +24,9 @@ export class AffiliationExperience {
     return (this._endTimestamp - this._startTimestamp) / 1000 / 86400;
   }
   public get when() {
+    if(this._isJustEvent){
+      return this._startTimestamp;
+    }
     return (this._endTimestamp + this._startTimestamp) / 2;
   }
 
@@ -146,7 +149,7 @@ export class AffiliationExperience {
                     {this._referenceUrls.map((url, index) => {
                       return (
                         <>
-                          <div className="flex flex-row text-xs ">
+                          <div className="flex flex-row text-xs text-gray-800">
                             <a href={url[1]}>- {url[0]}</a>
                           </div>
                         </>
