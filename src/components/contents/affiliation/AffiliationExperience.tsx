@@ -7,24 +7,28 @@ import "./AffiliationExeprience.css";
 
 export class AffiliationExperience {
   _startDate_yyyymmdd: string;
-  _endDate_yyyymmdd: string;
+  // _endDate_yyyymmdd: string;
   _startTimestamp: number;
-  _endTimestamp: number;
+  _endTimestamp: number | undefined;
   _title: string;
   //   _description: string | undefined;
   _descriptions: string[] = [];
   _referenceUrls: [string, string][] = [];
   _isEnded = true;
-  _isJustEvent = false;
+  // _isJustEvent = false;
   _images: string[] = [];
   _root: AffiliationHistory | undefined = undefined;
   _featured = false;
 
   public get days() {
+    if (this._endTimestamp == undefined) {
+      return 0;
+    }
+
     return (this._endTimestamp - this._startTimestamp) / 1000 / 86400;
   }
   public get when() {
-    if (this._isJustEvent) {
+    if (this._endTimestamp == undefined) {
       return this._startTimestamp;
     }
     return (this._endTimestamp + this._startTimestamp) / 2;
@@ -36,17 +40,20 @@ export class AffiliationExperience {
     endDate_yyyymmdd: string | undefined = undefined
   ) {
     this._startDate_yyyymmdd = startDate_yyyymmdd;
-    this._endDate_yyyymmdd = startDate_yyyymmdd;
+    // this._endDate_yyyymmdd = endDate_yyyymmdd ?? startDate_yyyymmdd;
     if (endDate_yyyymmdd == undefined) {
-      this._isJustEvent = true;
+      // this._isJustEvent = true;
     }
+    // if(isJustEvent != undefined){
+    //   this._isJustEvent = isJustEvent;
+    // }
 
     this._title = title;
 
     this._startTimestamp = convertYYYYMMDDToTimestamp(startDate_yyyymmdd);
-    this._endTimestamp = convertYYYYMMDDToTimestamp(
-      endDate_yyyymmdd ?? startDate_yyyymmdd
-    );
+    this._endTimestamp = endDate_yyyymmdd
+      ? convertYYYYMMDDToTimestamp(endDate_yyyymmdd ?? startDate_yyyymmdd)
+      : undefined;
   }
 
   addDescription(description: string) {
@@ -54,7 +61,7 @@ export class AffiliationExperience {
   }
 
   isJustEvent() {
-    return this._isJustEvent;
+    return this._endTimestamp === undefined;
   }
 
   setFeatured(value: boolean) {
@@ -112,13 +119,13 @@ export class AffiliationExperience {
             <div className="flex ">
               <div className="text-base font-extrabold">{this._title}</div>
               <div className="flex inline-block text-sm text-gray-600 pl-5 items-center ">
-                {!this._isJustEvent && (
+                {!this.isJustEvent() && (
                   <p>
                     {convertTimestampToYYYYMM(this._startTimestamp)} -{" "}
-                    {convertTimestampToYYYYMM(this._endTimestamp)}
+                    {convertTimestampToYYYYMM(this._endTimestamp!)}
                   </p>
                 )}
-                {this._isJustEvent && (
+                {this.isJustEvent() && (
                   <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
                 )}
               </div>
@@ -151,7 +158,7 @@ export class AffiliationExperience {
                         <>
                           <div className="flex flex-row pl-2 text-xs text-gray-800">
                             <a href={url[1]} target="_blank">
-                              {index+1}. {url[0]}
+                              {index + 1}. {url[0]}
                             </a>
                           </div>
                         </>
@@ -202,17 +209,17 @@ export class AffiliationExperience {
           }}
         ></div>
 
-        {!this._isJustEvent && (
-          <div id="popup-div" className="absolute top-1/2 -translate-y-1/2">
-            {this.renderCard(400, 0, true)}
-          </div>
-        )}
+        {/* {!this.isJustEvent() && (
+        )} */}
+        <div id="popup-div" className="absolute top-1/2 -translate-y-1/2">
+          {this.renderCard(400, 0, true)}
+        </div>
 
         <div
           className="flex w-64 float-right justify-end text-xs inline-block items-center text-primary "
           style={{
-            height: size  + "px",
-            transform: "translate(" + -size * 1.5 + "px, 0px)"
+            height: size + "px",
+            transform: "translate(" + -size * 1.5 + "px, 0px)",
           }}
         >
           {this._title}
@@ -220,9 +227,7 @@ export class AffiliationExperience {
             id="popup-div"
             className={"pl-1 text-primary font-bold float-right text-sm "}
           >
-            {this._isJustEvent && (
-              <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
-            )}
+            <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
           </div>
         </div>
       </div>
