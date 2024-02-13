@@ -24,9 +24,9 @@ danusys.pushExperience(experienceKisa);
 const experienceDanuNet = new AffiliationExperience("DanuNet 개발", "20170101", "20180731");
 experienceDanuNet.addDescription("딥러닝 영상 분석 라이브러리 개발");
 experienceDanuNet.addDescription("TF 학습 웨이트가 C++에서 돌수 있도록 구현");
-experienceDanuNet.addDescription("딥러닝 네트워크 C++(+CUDA +cuDNN) 으로 구현 (Tiny YOLO v2, LeNet 등)");
+experienceDanuNet.addDescription("딥러닝 네트워크 C++(+CUDA +cuDNN) 으로 구현 (TinyYOLOv2, LeNet 등)");
 experienceDanuNet.addDescription("검출된 객체의 추적 및 행위 판단 알고리즘 구현");
-experienceDanuNet.addDescription("언어: C++, CUDA, Python (Tensorflow)");
+experienceDanuNet.addDescription("C++, CUDA, OpenCV, Python (Tensorflow)");
 danusys.pushExperience(experienceDanuNet);
 
 const experienceAinos = new AffiliationExperience("Ainos 개발", "20180801", "20200331");

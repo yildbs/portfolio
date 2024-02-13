@@ -29,7 +29,9 @@ facedetector.addDescription("Tensorflow 사용");
 deepixel.pushExperience(facedetector);
 
 const iossdk = new AffiliationExperience("iOS SDK 개발", "20221101", "0");
+iossdk.addDescription("TODO");
 deepixel.pushExperience(iossdk);
+
 
 const fbxmaker = new AffiliationExperience("FBXMaker 개발", "20230401", "20230531");
 fbxmaker.addDescription("안경 2D 이미지로부터 3D 모델 만드는 툴");
@@ -42,6 +44,16 @@ spacear.addDescription("Flutter, ARCore(Android), ARKit(iOS), Unity 사용");
 import spacearvideo from "../assets/SpaceAR.mp4"
 spacear.addImage(spacearvideo);
 deepixel.pushExperience(spacear);
+
+const webspacear = new AffiliationExperience("Web SpaceAR 프로토타입 개발", "20230531", "20230630");
+webspacear.addDescription("TODO");
+deepixel.pushExperience(webspacear);
+
+const galloping = new AffiliationExperience("갤로핑 AI Soccer Recorder 개발", "20231101", "0");
+galloping.addDescription("축구 드리블 자세 분석을 위해 4방향에서 동시에 카메라 녹화하는 프로그램 개발");
+galloping.addDescription("각 채널이 프레임 단위로 싱크가 맞도록 구현");
+galloping.addDescription("C#(GUI), C++, CUDA, NVENC 사용");
+deepixel.pushExperience(galloping);
 
 
 export default deepixel;

@@ -9,18 +9,17 @@ import PopupImage from "../util/PopupImage";
 
 export class AffiliationExperience {
   _startDate_yyyymmdd: string;
-  // _endDate_yyyymmdd: string;
   _startTimestamp: number;
   _endTimestamp: number | undefined;
   _title: string;
-  //   _description: string | undefined;
   _descriptions: string[] = [];
   _referenceUrls: [string, string][] = [];
   _isEnded = true;
-  // _isJustEvent = false;
   _images: string[] = [];
   _root: AffiliationHistory | undefined = undefined;
   _featured = false;
+
+  private static _otherExeperiencesY: number[] = [];
 
   public get days() {
     if (this._endTimestamp == undefined) {
@@ -84,18 +83,24 @@ export class AffiliationExperience {
     this._root = root;
   }
 
-  renderCard(width: number, height: number, renderLikeSpeechBubble: boolean, circleSize: number | undefined = undefined) {
+  renderCard(
+    width: number,
+    height: number,
+    renderLikeSpeechBubble: boolean,
+    circleSize: number | undefined = undefined
+  ) {
     const speechBubbleTailLength = 40;
-    if(circleSize === undefined){
+    if (circleSize === undefined) {
       circleSize = speechBubbleTailLength / 2;
     }
 
     return (
       <div
         id="experience-card-div"
-        className={renderLikeSpeechBubble ? "flex items-center transform-none" : ""}
+        className={
+          renderLikeSpeechBubble ? "flex items-center transform-none" : ""
+        }
       >
-
         {renderLikeSpeechBubble && (
           <div className="testtt">
             <svg
@@ -193,14 +198,33 @@ export class AffiliationExperience {
       throw new Error("root must not be undefined");
     }
 
-    // const firstTimestamp = this._root.startTimestamp;
-
     const elapsedDays = (this.when - firstTimestamp) / 1000 / 86400;
     const size = 10;
-    const y = elapsedDays * pxPerDay;
+    let y = elapsedDays * pxPerDay;
 
-    const arrowDistance = 40;
-    const arrowHeight = size / 4;
+    while (true) {
+      let overlapped = false;
+      for (
+        let index = 0;
+        index<AffiliationExperience._otherExeperiencesY.length;
+        index++
+      ) {
+        const otherY = AffiliationExperience._otherExeperiencesY[index];
+        if(Math.abs(otherY-y) < size ){
+          overlapped = true;
+          break;
+        }
+      }
+      if(overlapped){
+        y += size;
+      }
+      else{
+        break;
+      }
+      // break;
+    }
+    AffiliationExperience._otherExeperiencesY.push(y);
+
     return (
       <div
         id="experience-div"
