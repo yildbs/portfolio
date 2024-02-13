@@ -15,7 +15,7 @@ export class AffiliationHistory {
   _startTimestamp: number;
   _endTimestamp: number;
   _isEnded = true;
-  _affliliation: string;
+  // _affliliation: string;
 
   _experiences: AffiliationExperience[] = [];
 
@@ -41,7 +41,6 @@ export class AffiliationHistory {
   constructor(
     startDate_yyyymmdd: string,
     endDate_yyyymmdd: string,
-    affiliation: string,
     startDescription: string,
     endDescription: string
   ) {
@@ -52,7 +51,7 @@ export class AffiliationHistory {
 
     this._startDate_yyyymmdd = startDate_yyyymmdd;
     this._endDate_yyyymmdd = endDate_yyyymmdd;
-    this._affliliation = affiliation;
+    // this._affliliation = affiliation;
     this._startDescription = startDescription;
     this._endDescription = endDescription;
     this._experiences = [];

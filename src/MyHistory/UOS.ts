@@ -6,7 +6,6 @@ let uos= new AffiliationHistory(
   "20110301",
   "20161031",
   "Univ. of Seoul",
-  "Univ. of Seoul",
   ""
 );
 

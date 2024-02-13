@@ -2,7 +2,7 @@ import { AffiliationExperience } from "../components/contents/affiliation/Affili
 import { AffiliationHistory } from "../components/contents/affiliation/AffiliationHistory";
 
 
-let innodep = new AffiliationHistory("20210322", "20211007", "Innodep", "Innodep", "");
+let innodep = new AffiliationHistory("20210322", "20211007", "Innodep", "");
 
 
 const experienceKisa = new AffiliationExperience("KISA 지능형 CCTV 인증", "20210701", "20211007");

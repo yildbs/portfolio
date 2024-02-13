@@ -8,7 +8,7 @@ export default function Timeline(props: { history: AffiliationHistory[] }) {
   const days = (timestampMax - timestampMin) / 86400 / 1000;
   const pxPerDay = 0.33;
 
-  const widthMain = 500;
+  const widthMain = 300;
   const verticalBarWidth = 14;
   const barMargin = 10;
   const centerLineX = widthMain - verticalBarWidth - barMargin / 2;

@@ -6,13 +6,13 @@ import  Calification from "../assets/윤일로_DELE_B1_자ᄀ�
 import spain1 from "../assets/spain1.jpeg"
 import spain2 from "../assets/spain2.jpeg"
 
-let spain = new AffiliationHistory("20200401", "20210201", "Study Spainish", "Study Spainish", "Return to Korea");
+let spain = new AffiliationHistory("20200401", "20210201", "Study Spainish", "");
 
 const studySpainish = new AffiliationExperience("스페인어 공부", "20200401", "20200831");
 studySpainish.addDescription("코로나 이슈로 한국에서 스페인어 공부함");
 spain.pushExperience(studySpainish);
 
-const dele = new AffiliationExperience("DELE B1", "20200915");
+const dele = new AffiliationExperience("DELE B1 취득", "20200915");
 dele.addReferenceUrl("DELE B1 자격 증명", Calification);
 spain.pushExperience(dele);
 

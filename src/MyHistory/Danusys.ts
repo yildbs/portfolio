@@ -1,7 +1,7 @@
 import { AffiliationExperience } from "../components/contents/affiliation/AffiliationExperience";
 import { AffiliationHistory } from "../components/contents/affiliation/AffiliationHistory";
 
-let danusys = new AffiliationHistory("20161101", "20200331", "Danusys", "Danusys", "");
+let danusys = new AffiliationHistory("20161101", "20200331", "Danusys", "");
 
 // danusys.pushExperience(new AffiliationExperience("Tempaa", "20180214"))
 // const testExperience = new AffiliationExperience("Test Title", "20170101", "20181231");

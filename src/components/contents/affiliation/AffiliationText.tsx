@@ -35,11 +35,11 @@ export default function AffiliationText(props: {
           >
             <div id="hover-div" className="flex flex-row ">
               <div>{props.startDate}</div>
-              {props.endDate != undefined && (
+              {/* {props.endDate != undefined && (
                 <>
                   <div id="popup-div">- {props.endDate}</div>
                 </>
-              )}
+              )} */}
             </div>
           </div>
         )}
