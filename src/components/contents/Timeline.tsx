@@ -14,6 +14,7 @@ export default function Timeline(props: { history: AffiliationHistory[] }) {
   const centerLineX = widthMain - verticalBarWidth - barMargin / 2;
   return (
     <>
+
       <div className="w-full flex float-left flex-col">
         <Title title={"Timeline"} />
         <div>I grow by {pxPerDay}px every day.</div>

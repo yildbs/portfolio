@@ -12,6 +12,7 @@ innodep.pushExperience(experienceKisa);
 
 const experienceIDL = new AffiliationExperience("IDL 개발", "20210401", "20211007");
 experienceIDL.addDescription("IDL: 이노뎁 딥러닝 영상 분석 라이브러리");
+experienceIDL.addDescription("CCTV에서 사람 검출 및 행위 판단");
 experienceIDL.addDescription("C++, CUDA, PyTorch");
 innodep.pushExperience(experienceIDL);
 

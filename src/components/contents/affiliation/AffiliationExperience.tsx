@@ -1,9 +1,11 @@
 import {
   convertTimestampToYYYYMM,
+  convertTimestampToYYYYMMDD,
   convertYYYYMMDDToTimestamp,
 } from "../util/Date";
 import { AffiliationHistory } from "./AffiliationHistory";
 import "./AffiliationExeprience.css";
+import PopupImage from "../util/PopupImage";
 
 export class AffiliationExperience {
   _startDate_yyyymmdd: string;
@@ -40,17 +42,15 @@ export class AffiliationExperience {
     endDate_yyyymmdd: string | undefined = undefined
   ) {
     this._startDate_yyyymmdd = startDate_yyyymmdd;
-    // this._endDate_yyyymmdd = endDate_yyyymmdd ?? startDate_yyyymmdd;
-    if (endDate_yyyymmdd == undefined) {
-      // this._isJustEvent = true;
-    }
-    // if(isJustEvent != undefined){
-    //   this._isJustEvent = isJustEvent;
-    // }
 
     this._title = title;
-
     this._startTimestamp = convertYYYYMMDDToTimestamp(startDate_yyyymmdd);
+
+    if (endDate_yyyymmdd === "0") {
+      endDate_yyyymmdd = convertTimestampToYYYYMMDD(Date.now());
+      this._isEnded = false;
+    }
+
     this._endTimestamp = endDate_yyyymmdd
       ? convertYYYYMMDDToTimestamp(endDate_yyyymmdd ?? startDate_yyyymmdd)
       : undefined;
@@ -84,23 +84,27 @@ export class AffiliationExperience {
     this._root = root;
   }
 
-  renderCard(width: number, height: number, renderLikeSpeechBubble: boolean) {
+  renderCard(width: number, height: number, renderLikeSpeechBubble: boolean, circleSize: number | undefined = undefined) {
     const speechBubbleTailLength = 40;
+    if(circleSize === undefined){
+      circleSize = speechBubbleTailLength / 2;
+    }
 
     return (
       <div
-        id="experienceCard"
-        className={renderLikeSpeechBubble ? "flex items-center" : ""}
+        id="experience-card-div"
+        className={renderLikeSpeechBubble ? "flex items-center transform-none" : ""}
       >
+
         {renderLikeSpeechBubble && (
           <div className="">
             <svg
               className="fill-content"
               width={speechBubbleTailLength + "px"}
-              height={speechBubbleTailLength / 2 + "px"}
+              height={circleSize + "px"}
               viewBox="0 0 100 100"
             >
-              <path d="M 150,0 L 150,100 60,50 Z"></path>
+              <path d="M 200,0 L 200,100 60,50 Z"></path>
             </svg>
           </div>
         )}
@@ -120,10 +124,19 @@ export class AffiliationExperience {
               <div className="text-base font-extrabold">{this._title}</div>
               <div className="flex inline-block text-sm text-gray-600 pl-5 items-center ">
                 {!this.isJustEvent() && (
-                  <p>
-                    {convertTimestampToYYYYMM(this._startTimestamp)} -{" "}
-                    {convertTimestampToYYYYMM(this._endTimestamp!)}
-                  </p>
+                  <>
+                    {this._isEnded && (
+                      <p>
+                        {convertTimestampToYYYYMM(this._startTimestamp)} -{" "}
+                        {convertTimestampToYYYYMM(this._endTimestamp!)}
+                      </p>
+                    )}
+                    {!this._isEnded && (
+                      <p>
+                        {convertTimestampToYYYYMM(this._startTimestamp)} - ing
+                      </p>
+                    )}
+                  </>
                 )}
                 {this.isJustEvent() && (
                   <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
@@ -143,7 +156,8 @@ export class AffiliationExperience {
                 {this._images.map((image, index) => {
                   return (
                     <div id="image-in-card" className="inline-flex px-1 py-2  ">
-                      <img src={image} className=" " />
+                      <PopupImage image={image} />
+                      {/* <img src={image} className=" " /> */}
                     </div>
                   );
                 })}
@@ -211,8 +225,8 @@ export class AffiliationExperience {
 
         {/* {!this.isJustEvent() && (
         )} */}
-        <div id="popup-div" className="absolute top-1/2 -translate-y-1/2">
-          {this.renderCard(400, 0, true)}
+        <div id="popup-div" className="z-20 absolute ">
+          {this.renderCard(400, 0, true, size)}
         </div>
 
         <div
