@@ -97,14 +97,14 @@ export class AffiliationExperience {
       >
 
         {renderLikeSpeechBubble && (
-          <div className="">
+          <div className="testtt">
             <svg
               className="fill-content"
               width={speechBubbleTailLength + "px"}
-              height={circleSize + "px"}
+              height={circleSize * 2 + "px"}
               viewBox="0 0 100 100"
             >
-              <path d="M 200,0 L 200,100 60,50 Z"></path>
+              <path d="M 50,20 L 300,200 300,0 Z"></path>
             </svg>
           </div>
         )}
@@ -196,7 +196,7 @@ export class AffiliationExperience {
     // const firstTimestamp = this._root.startTimestamp;
 
     const elapsedDays = (this.when - firstTimestamp) / 1000 / 86400;
-    const size = 15;
+    const size = 10;
     const y = elapsedDays * pxPerDay;
 
     const arrowDistance = 40;

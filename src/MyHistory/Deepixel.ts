@@ -33,6 +33,7 @@ deepixel.pushExperience(iossdk);
 
 const fbxmaker = new AffiliationExperience("FBXMaker 개발", "20230401", "20230531");
 fbxmaker.addDescription("안경 2D 이미지로부터 3D 모델 만드는 툴");
+fbxmaker.addDescription("Python 사용")
 deepixel.pushExperience(fbxmaker);
 
 const spacear = new AffiliationExperience("SpaceAR 프로토타입 개발", "20230101", "20230531");

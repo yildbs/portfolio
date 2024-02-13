@@ -6,20 +6,15 @@ export default function PopupImage(props: { image: string }) {
   const videoExtensions = ["mp4"];
 
   const isVideo = videoExtensions.reduce((result, current) => {
-    if (result) {
-      return true;
-    }
-    if (props.image.includes(current)) {
+    if (result || props.image.includes(current)) {
       return true;
     }
     return false;
   }, false);
 
-  // const isVideo = props.image.includes()
-
   return (
     <>
-      <div className=" flex items-center justify-center">
+      <div className=" flex items-center justify-center hover:cursor-pointer">
         {isVideo && (
           <>
             <video src={props.image} onClick={() => setShowPopup(true)}></video>
@@ -34,11 +29,11 @@ export default function PopupImage(props: { image: string }) {
 
       {showPopup && (
         <div
-          className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center"
+          className="z-50 fixed top-0 left-0 w-screen h-screen flex items-center justify-center"
           onClick={() => setShowPopup(false)}
         >
           <div className="absolute top-0 left-0 w-full h-full bg-gray-800 opacity-50"></div>
-          <div className="relative w-full h-full p-8 z-50 flex items-center justify-center ">
+          <div className="absolute w-full h-full pt-40 p-8 z-50 flex items-center justify-center ">
             {isVideo && (
               <>
                 <video width="60%" controls>

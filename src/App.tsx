@@ -6,7 +6,7 @@ import Education from "./components/contents/Education";
 import Experience from "./components/contents/Experience";
 import EmailTag from "./components/headers/EmailTag";
 import Timeline from "./components/contents/Timeline";
-import history from "./MyHistory.ts"
+import history from "./MyHistory.ts";
 
 const App: React.FC = () => {
   return (
@@ -30,7 +30,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="flex h-fit px-10 py-10">
-            <Experience history={history}/>
+            <Experience history={history} />
           </div>
         </main>
       </div>
