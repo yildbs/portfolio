@@ -181,7 +181,16 @@ export class AffiliationExperience {
     const arrowDistance = 40;
     const arrowHeight = size / 4;
     return (
-      <>
+      <div
+        id="experience-div"
+        style={{
+          width: size + "px",
+          height: size + "px",
+          left: x - size / 2 + "px",
+          top: y - size / 2 + "px",
+          position: "absolute",
+        }}
+      >
         <div
           id="hover-div"
           className={
@@ -190,42 +199,33 @@ export class AffiliationExperience {
           style={{
             width: size + "px",
             height: size + "px",
-            left: x - size / 2 + "px",
-            top: y - size / 2 + "px",
-            position: "absolute",
+          }}
+        ></div>
+
+        {!this._isJustEvent && (
+          <div id="popup-div" className="absolute top-1/2 -translate-y-1/2">
+            {this.renderCard(400, 0, true)}
+          </div>
+        )}
+
+        <div
+          className="flex w-64 float-right justify-end text-xs inline-block items-center text-primary "
+          style={{
+            height: size  + "px",
+            transform: "translate(" + -size * 1.5 + "px, 0px)"
           }}
         >
-          {!this._isJustEvent && (
-            <div id="popup-div" className="absolute top-1/2 -translate-y-1/2">
-              {this.renderCard(400, 0, true)}
-            </div>
-          )}
-
+          {this._title}
           <div
-            className="flex w-64 float-right justify-end text-xs inline-block items-center text-primary "
-            style={{
-              height: size * 4 + "px",
-              transform:
-                "translate(" +
-                -size * 1.5 +
-                "px, " +
-                -(size * 2 - size / 2) +
-                "px)",
-            }}
+            id="popup-div"
+            className={"pl-1 text-primary font-bold float-right text-sm "}
           >
-            {this._title}
-
-            <div
-              id="popup-div"
-              className={"pl-1 text-primary font-bold float-right text-sm "}
-            >
-              {this._isJustEvent && (
-                <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
-              )}
-            </div>
+            {this._isJustEvent && (
+              <p>{convertTimestampToYYYYMM(this._startTimestamp)}</p>
+            )}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -110,25 +110,11 @@ export class AffiliationHistory {
             height={heightDate}
             x={dateX}
             y={0}
-            startDate={convertTimestampToYYYYMM(this._endTimestamp)}
+            startDate={convertTimestampToYYYYMM(this._startTimestamp)}
             endDate={convertTimestampToYYYYMM(this._endTimestamp)}
             text={this._startDescription}
           />
 
-          {/* {this._isEnded && (
-            <>
-              <AffiliationText
-                align={dateAlign}
-                width={widthDate}
-                height={heightDate}
-                x={dateX}
-                y={heightMain - heightDate}
-                startDate={convertTimestampToYYYYMM(this._endTimestamp)}
-                endDate={convertTimestampToYYYYMM(this._endTimestamp)}
-                text={this._endDescription}
-              />
-            </>
-          )} */}
           {!this._isEnded && (
             <AffiliationText
               align={dateAlign}
