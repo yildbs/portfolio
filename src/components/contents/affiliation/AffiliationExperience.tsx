@@ -151,7 +151,7 @@ export class AffiliationExperience {
                         <>
                           <div className="flex flex-row pl-2 text-xs text-gray-800">
                             <a href={url[1]} target="_blank">
-                              - {url[0]}
+                              {index+1}. {url[0]}
                             </a>
                           </div>
                         </>
