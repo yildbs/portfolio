@@ -2,7 +2,7 @@ import { AffiliationExperience } from "../components/contents/affiliation/Affili
 import { AffiliationHistory } from "../components/contents/affiliation/AffiliationHistory";
 
 
-let deepixel = new AffiliationHistory("20211018", "0", "Deepixel", "ing..");
+let deepixel = new AffiliationHistory("20211018", "0", "Deepixel", "ing..", true);
 
 
 const wasm = new AffiliationExperience("StyleAR Web Live SDK 개발", "20211101", "20220631");

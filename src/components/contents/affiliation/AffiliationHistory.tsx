@@ -15,6 +15,7 @@ export class AffiliationHistory {
   _startTimestamp: number;
   _endTimestamp: number;
   _isEnded = true;
+  _equallySpacingExperiences = false;
   // _affliliation: string;
 
   _experiences: AffiliationExperience[] = [];
@@ -42,7 +43,8 @@ export class AffiliationHistory {
     startDate_yyyymmdd: string,
     endDate_yyyymmdd: string,
     startDescription: string,
-    endDescription: string
+    endDescription: string,
+    equallySpacingExperiences: boolean = false
   ) {
     if (endDate_yyyymmdd === "0") {
       endDate_yyyymmdd = convertTimestampToYYYYMMDD(Date.now());
@@ -55,6 +57,7 @@ export class AffiliationHistory {
     this._startDescription = startDescription;
     this._endDescription = endDescription;
     this._experiences = [];
+    this._equallySpacingExperiences = equallySpacingExperiences;
 
     this._startTimestamp = convertYYYYMMDDToTimestamp(startDate_yyyymmdd);
     this._endTimestamp = convertYYYYMMDDToTimestamp(endDate_yyyymmdd);
@@ -68,29 +71,16 @@ export class AffiliationHistory {
     widthMain: number,
     barX: number,
     verticalBarWidth: number,
-    // barMargin: number,
     index: number,
     firstTimestamp: number,
     pxPerDay: number
   ) {
-    const elapsedDays = (this._startTimestamp - firstTimestamp) / 1000 / 86400;
+    const elapsedDaysInPixel =
+      ((this._startTimestamp - firstTimestamp) / 1000 / 86400) * pxPerDay;
     const isEven = index % 2 == 0;
-    // const isLeft = true;
-
-    // const barX = isLeft ? widthMain - barMargin - verticalBarWidth : barMargin;
-    // let barX = widthMain - barMargin - verticalBarWidth;
-    // if (isLeft) {
-    //   // barX -= verticalBarWidth;
-    // }
-
     const dateMargin = 10;
     const heightMain = this.days * pxPerDay;
-    const widthDate = widthMain * 0.8;
-    // const dateX = isLeft
-    //   ? widthMain - widthDate - barMargin - verticalBarWidth - dateMargin
-    //   : barX + verticalBarWidth + dateMargin;
-
-    // const dateX = widthMain - widthDate - barMargin - verticalBarWidth - dateMargin;
+    const widthDate = widthMain;
     const dateX = barX - widthDate - dateMargin;
     const heightDate = 30;
     const dateAlign = "text-right";
@@ -102,7 +92,7 @@ export class AffiliationHistory {
           style={{
             width: widthMain + "px",
             height: heightMain + "px",
-            transform: "translate(" + "0px, " + elapsedDays * pxPerDay + "px)",
+            transform: "translate(" + "0px, " + elapsedDaysInPixel + "px)",
           }}
         >
           <AffiliationText
@@ -137,8 +127,29 @@ export class AffiliationHistory {
             color={isEven ? "bg-primary" : "bg-secondary"}
           />
         </div>
-        {this._experiences.map((experience, index) =>
-          experience.renderPoint(barX, firstTimestamp, pxPerDay)
+        {!this._equallySpacingExperiences && (
+          <>
+            {this._experiences.map((experience, index) =>
+              experience.renderPoint(barX, firstTimestamp, pxPerDay)
+            )}
+          </>
+        )}
+        {this._equallySpacingExperiences && (
+          <>
+            {this._experiences.map((experience, index) => {
+              let heightStart = heightDate;
+              // let heightEnd = !this._isEnded ? heightDate : 0;
+              let heightEnd = 0;
+              let heightTarget = heightMain - heightStart - heightEnd;
+
+              let y =
+                elapsedDaysInPixel +
+                heightStart +
+                (heightTarget * (index + 0.5)) / (this._experiences.length + 1);
+              return experience.renderPoint(barX, y);
+              return experience.renderPoint(barX, firstTimestamp, pxPerDay);
+            })}
+          </>
         )}
       </>
     );

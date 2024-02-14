@@ -6,7 +6,7 @@ import  Calification from "../assets/윤일로_DELE_B1_자ᄀ�
 import spain1 from "../assets/spain1.jpeg"
 import spain2 from "../assets/spain2.jpeg"
 
-let spain = new AffiliationHistory("20200401", "20210201", "Study Spainish", "");
+let spain = new AffiliationHistory("20200401", "20210201", "Study Spainish", "", true);
 
 const studySpainish = new AffiliationExperience("스페인어 공부", "20200401", "20200831");
 studySpainish.addDescription("코로나 이슈로 한국에서 스페인어 공부함");
