@@ -16,10 +16,8 @@ export default function AffiliationText(props: {
 
   return (
     <>
-      {/* font_weight="font-extrabold"
-            font_size="text-xl" */}
       <div
-        className="absolute flex-row"
+        className="absolute justify-end flex text-xl xl:text-2xl"
         style={{
           width: props.width + "px",
           height: props.height + "px",
@@ -29,24 +27,19 @@ export default function AffiliationText(props: {
         {props.startDate != undefined && (
           <div
             className={
-              "flex pl-1 float-right text-primary font-extrabold text-xl " +
+              "flex pl-1 float-right text-primary font-extrabold  " +
               props.align
             }
           >
             <div id="hover-div" className="flex flex-row ">
               <div>{props.startDate}</div>
-              {/* {props.endDate != undefined && (
-                <>
-                  <div id="popup-div">- {props.endDate}</div>
-                </>
-              )} */}
             </div>
           </div>
         )}
         {props.text != undefined && (
           <div
             className={
-              "flex float-right text-primary font-medium text-xl " + props.align
+              "flex float-right text-primary font-medium  " + props.align
             }
           >
             {props.text}

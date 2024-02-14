@@ -17,6 +17,9 @@ export default {
         debug: "#ffff00FF", //DEBUG
       },
     },
+    // screens: {
+    //   '2sm': '420px', // min-width iphone 14 pro max?
+    // },
   },
   plugins: [],
 };

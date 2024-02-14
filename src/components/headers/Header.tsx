@@ -35,7 +35,7 @@ const Header: React.FC = () => {
         !isVisible && "-translate-y-full"
       }`}
     >
-      <div className="w-full flex flex-row flow-root">
+      <div className="w-full flex md:flex-row 2sm:flex-col flow-root">
         <div className="w-fit h-full flex items-center float-left ">
           <NameTag />
         </div>

@@ -73,14 +73,14 @@ export class AffiliationHistory {
     pxPerDay: number
   ) {
     const elapsedDays = (this._startTimestamp - firstTimestamp) / 1000 / 86400;
-    const isLeft = index % 2 == 0;
+    const isEven = index % 2 == 0;
     // const isLeft = true;
 
     // const barX = isLeft ? widthMain - barMargin - verticalBarWidth : barMargin;
     let barX = widthMain - barMargin - verticalBarWidth;
-    if (isLeft) {
-      // barX -= verticalBarWidth;
-    }
+    // if (isLeft) {
+    //   // barX -= verticalBarWidth;
+    // }
 
     const dateMargin = 10;
     const heightMain = this.days * pxPerDay;
@@ -132,7 +132,7 @@ export class AffiliationHistory {
             height={heightMain}
             x={barX}
             y={0}
-            color={isLeft ? "bg-primary" : "bg-secondary"}
+            color={isEven? "bg-primary" : "bg-secondary"}
           />
         </div>
         {this._experiences.map((experience, index) =>
