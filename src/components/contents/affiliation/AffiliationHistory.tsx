@@ -66,8 +66,9 @@ export class AffiliationHistory {
 
   render(
     widthMain: number,
+    barX: number,
     verticalBarWidth: number,
-    barMargin: number,
+    // barMargin: number,
     index: number,
     firstTimestamp: number,
     pxPerDay: number
@@ -77,7 +78,7 @@ export class AffiliationHistory {
     // const isLeft = true;
 
     // const barX = isLeft ? widthMain - barMargin - verticalBarWidth : barMargin;
-    let barX = widthMain - barMargin - verticalBarWidth;
+    // let barX = widthMain - barMargin - verticalBarWidth;
     // if (isLeft) {
     //   // barX -= verticalBarWidth;
     // }
@@ -89,13 +90,14 @@ export class AffiliationHistory {
     //   ? widthMain - widthDate - barMargin - verticalBarWidth - dateMargin
     //   : barX + verticalBarWidth + dateMargin;
 
-    const dateX =
-      widthMain - widthDate - barMargin - verticalBarWidth - dateMargin;
+    // const dateX = widthMain - widthDate - barMargin - verticalBarWidth - dateMargin;
+    const dateX = barX - widthDate - dateMargin;
     const heightDate = 30;
     const dateAlign = "text-right";
     return (
       <>
         <div
+          id="affiliation-history-div"
           className="flex absolute"
           style={{
             width: widthMain + "px",
@@ -132,15 +134,11 @@ export class AffiliationHistory {
             height={heightMain}
             x={barX}
             y={0}
-            color={isEven? "bg-primary" : "bg-secondary"}
+            color={isEven ? "bg-primary" : "bg-secondary"}
           />
         </div>
         {this._experiences.map((experience, index) =>
-          experience.renderPoint(
-            barX + verticalBarWidth / 2,
-            firstTimestamp,
-            pxPerDay
-          )
+          experience.renderPoint(barX, firstTimestamp, pxPerDay)
         )}
       </>
     );

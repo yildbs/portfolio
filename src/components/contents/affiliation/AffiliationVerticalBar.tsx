@@ -12,7 +12,7 @@ export default function AffiliationVerticalBar(props: {
       style={{
         width: props.circleSize + "px",
         height: props.height + "px",
-        transform: "translate(" + props.x + "px, " + props.y + "px)",
+        transform: "translate(" + (props.x-(props.circleSize/2-0.5)) + "px, " + props.y + "px)",
       }}
     ></div>
   );

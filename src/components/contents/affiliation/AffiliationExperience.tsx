@@ -29,10 +29,11 @@ export class AffiliationExperience {
     return (this._endTimestamp - this._startTimestamp) / 1000 / 86400;
   }
   public get when() {
-    if (this._endTimestamp == undefined) {
-      return this._startTimestamp;
-    }
-    return (this._endTimestamp + this._startTimestamp) / 2;
+    return this._startTimestamp;
+    // if (this._endTimestamp == undefined) {
+    //   return this._startTimestamp;
+    // }
+    // return (this._endTimestamp + this._startTimestamp) / 2;
   }
 
   constructor(
@@ -193,37 +194,37 @@ export class AffiliationExperience {
     );
   }
 
-  renderPoint(x: number, firstTimestamp: number, pxPerDay: number) {
+  renderPoint(barX: number, firstTimestamp: number, pxPerDay: number) {
     if (this._root == undefined) {
       throw new Error("root must not be undefined");
     }
 
     const elapsedDays = (this.when - firstTimestamp) / 1000 / 86400;
     const size = 10;
-    let y = elapsedDays * pxPerDay;
+    let pointY = elapsedDays * pxPerDay;
 
     while (true) {
       let overlapped = false;
+      let otherY = 0;
       for (
         let index = 0;
-        index<AffiliationExperience._otherExeperiencesY.length;
+        index < AffiliationExperience._otherExeperiencesY.length;
         index++
       ) {
-        const otherY = AffiliationExperience._otherExeperiencesY[index];
-        if(Math.abs(otherY-y) < size ){
+        otherY = AffiliationExperience._otherExeperiencesY[index];
+        if (Math.abs(otherY - pointY) < size) {
           overlapped = true;
           break;
         }
       }
-      if(overlapped){
-        y += size;
-      }
-      else{
+      if (overlapped) {
+        // y += size;
+        pointY = otherY + size * 1.5;
+      } else {
         break;
       }
-      // break;
     }
-    AffiliationExperience._otherExeperiencesY.push(y);
+    // AffiliationExperience._otherExeperiencesY.push(pointY);
 
     return (
       <div
@@ -231,8 +232,8 @@ export class AffiliationExperience {
         style={{
           width: size + "px",
           height: size + "px",
-          left: x - size / 2 + "px",
-          top: y - size / 2 + "px",
+          left: barX - size / 2 + "px",
+          top: pointY + "px",
           position: "absolute",
         }}
       >
@@ -247,14 +248,13 @@ export class AffiliationExperience {
           }}
         ></div>
 
-        {/* {!this.isJustEvent() && (
-        )} */}
         <div id="popup-div" className="z-20 absolute ">
           {this.renderCard(400, 0, true, size)}
         </div>
 
+        {/* className="absolute justify-end flex text-xl xl:text-2xl" */}
         <div
-          className="flex w-64 float-right justify-end text-xs inline-block items-center text-primary "
+          className="flex w-64 float-right justify-end text-sm xl:text-base inline-block items-center text-primary "
           style={{
             height: size + "px",
             transform: "translate(" + -size * 1.5 + "px, 0px)",

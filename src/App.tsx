@@ -16,7 +16,7 @@ const App: React.FC = () => {
 
         <EmailTag></EmailTag>
 
-        <main className="max-w-screen-2xl max-w-7xl px-10 py-20">
+        <main id="main" className="max-w-screen-2xl max-w-7xl px-10 py-20">
           <div className="flex h-fit px-10 py-20">
             <AboutMe></AboutMe>
           </div>
