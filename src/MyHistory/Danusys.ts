@@ -3,13 +3,6 @@ import { AffiliationHistory } from "../components/contents/affiliation/Affiliati
 
 let danusys = new AffiliationHistory("20161101", "20200331", "Danusys", "");
 
-// danusys.pushExperience(new AffiliationExperience("Tempaa", "20180214"))
-// const testExperience = new AffiliationExperience("Test Title", "20170101", "20181231");
-// testExperience.addDescription("Test Description 1");
-// testExperience.addDescription("Test Description 2");
-// testExperience.addDescription("Test Description 3");
-// testExperience.setFeatured(true);
-
 const experienceArmy = new AffiliationExperience("병역특례 전문연구요원", "20170226", "20200227");
 danusys.pushExperience(experienceArmy);
 
@@ -33,19 +26,9 @@ const experienceAinos = new AffiliationExperience("Ainos 개발", "20180801", "2
 experienceAinos.addDescription("Ainos: 다누시스 지능형 CCTV 영상 분석 서버");
 experienceAinos.addDescription("32CH 동시 처리");
 experienceAinos.addDescription("CCTV 영상 입력 받아서 분석하여 이벤트 알림");
+experienceAinos.addDescription("C++, CUDA, OpenCV, Python (Tensorflow)");
 experienceAinos.addReferenceUrl("다누시스 지능형 CCTV 서비스", "http://www.danusys.com/renew_solution/intel01.php")
 danusys.pushExperience(experienceAinos);
 
-
-
-// import temp1 from "../assets/temp2.png"
-// import temp2 from "../assets/temp2.png"
-// import temp3 from "../assets/temp2.png"
-// import temp4 from "../assets/temp2.png"
-// testExperience.addImage(temp1);
-// testExperience.addImage(temp2);
-// testExperience.addImage(temp3);
-// testExperience.addImage(temp4);
-// danusys.pushExperience(testExperience);
 
 export default danusys;
