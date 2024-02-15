@@ -162,7 +162,6 @@ export class AffiliationExperience {
                   return (
                     <div id="image-in-card" className="inline-flex px-1 py-2  ">
                       <PopupImage image={image} />
-                      {/* <img src={image} className=" " /> */}
                     </div>
                   );
                 })}
@@ -175,7 +174,7 @@ export class AffiliationExperience {
                     {this._referenceUrls.map((url, index) => {
                       return (
                         <>
-                          <div className="flex flex-row pl-2 text-xs text-gray-800">
+                          <div className="flex flex-row pl-2 text-sm font-bold text-blue-800">
                             <a href={url[1]} target="_blank">
                               {index + 1}. {url[0]}
                             </a>

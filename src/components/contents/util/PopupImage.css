@@ -1,0 +1,12 @@
+
+
+#realvideo {
+    max-width: 60%; /* Set maximum width to 60% of parent div */
+    max-height: 80%; /* Set maximum height to 30% of parent div */
+    width: auto; /* Allow the width to adjust based on the max-width */
+    height: auto; /* Allow the height to adjust based on the max-height */
+    position: absolute; /* Position video absolutely within parent div */
+    top: 50%; /* Align video to the middle vertically */
+    left: 50%; /* Align video to the middle horizontally */
+    transform: translate(-50%, -50%); /* Center the video within the parent div */
+}
