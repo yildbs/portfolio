@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./PopupImage.css"
 
 export default function PopupImage(props: { image: string }) {
   const [showPopup, setShowPopup] = useState(false);
@@ -36,7 +37,7 @@ export default function PopupImage(props: { image: string }) {
           <div className="absolute w-full h-full pt-40 p-8 z-50 flex items-center justify-center ">
             {isVideo && (
               <>
-                <video width="60%" controls>
+                <video id="realvideo" width="60%" controls style={{ objectFit: "fill" }}>
                   <source src={props.image} type="video/mp4"></source>
                 </video>
               </>

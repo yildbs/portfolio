@@ -32,8 +32,7 @@ const iossdk = new AffiliationExperience("iOS SDK 개발", "20221101", "0");
 iossdk.addDescription("TODO");
 deepixel.pushExperience(iossdk);
 
-
-const fbxmaker = new AffiliationExperience("FBXMaker 개발", "20230401", "20230531");
+const fbxmaker = new AffiliationExperience("FBXMaker 개발", "20230401", "0");
 fbxmaker.addDescription("안경 2D 이미지로부터 3D 모델 만드는 툴");
 fbxmaker.addDescription("Python 사용")
 deepixel.pushExperience(fbxmaker);
@@ -46,13 +45,23 @@ spacear.addImage(spacearvideo);
 deepixel.pushExperience(spacear);
 
 const webspacear = new AffiliationExperience("Web SpaceAR 프로토타입 개발", "20230531", "20230630");
-webspacear.addDescription("TODO");
+webspacear.addDescription("웹에서 하는 가구 가상 배치 앱");
+webspacear.addDescription("WebXR, ThreeJS 사용");
+import webspacearvideo from "../assets/webspacear.mp4"
+webspacear.addImage(webspacearvideo);
 deepixel.pushExperience(webspacear);
+
+const stylearkiosk = new AffiliationExperience("StyleAR Kiosk 개발", "20230901", "0");
+stylearkiosk.addDescription("개발 및 앱스토어 등록");
+stylearkiosk.addReferenceUrl("Appstore StyleAR Kiosk", "https://apps.apple.com/kr/app/stylear-kiosk/id6472699656?l=en-GB")
+deepixel.pushExperience(stylearkiosk);
 
 const galloping = new AffiliationExperience("갤로핑 AI Soccer Recorder 개발", "20231101", "0");
 galloping.addDescription("축구 드리블 자세 분석을 위해 4방향에서 동시에 카메라 녹화하는 프로그램 개발");
-galloping.addDescription("각 채널이 프레임 단위로 싱크가 맞도록 구현");
-galloping.addDescription("C#(GUI), C++, CUDA, NVENC 사용");
+galloping.addDescription("각 채널이 프레임 단위로 싱크가 맞게 녹화");
+galloping.addDescription("Windows, C#(GUI), C++, CUDA, NVENC 사용");
+import gallopingvideo from "../assets/galloping.mp4"
+galloping.addImage(gallopingvideo);
 deepixel.pushExperience(galloping);
 
 
